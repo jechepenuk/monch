@@ -1,0 +1,7 @@
+apache info 
+
+https://www.youtube.com/watch?v=CEghFZe7ALA
+
+localhost -->  //var/www/html/index.html or index.php
+
+config localhost --> //etc/apache2/mods-enabled/dir.conf
