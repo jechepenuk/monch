@@ -20,20 +20,14 @@ if (isset($_POST['addcomment'])){
     mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
     header('Refresh: 0');
 }
-// if (isset($_POST['follow'])){
-//     $postid=$_POST['postid'];
-//     $commenter=$_GET['user_id'];
-//     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $commenter . "'");
-//     $row2 = mysqli_fetch_array($result2);
-//     $commenter=$row2['username'];
-//     $comment=$_POST['comment'];
-//     $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
-//     $postinfo=mysqli_fetch_array($post);
-//     $currComments=$postinfo['comments'];
-//     $updatedComments=$currComments . ',' . $commenter . ': ' . $comment;
-//     mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
-//     header('Refresh: 0');
-// }
+if (isset($_POST['follow'])){
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+    $row2 = mysqli_fetch_array($result2);
+    $following=$row2['following'];
+    $updatedFollow=$following . ','.$_GET['friend'];
+    mysqli_query($conn,"UPDATE users SET following='" . $updatedFollow . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+    header('Refresh: 0');
+}
 if (isset($_POST['unfollow'])){
     $user=$_GET['user_id'];
     $friend=$_GET['friend'];
@@ -129,7 +123,7 @@ if (isset($_POST['search'])){
         echo '<input type="submit" class="selectButtonNarrow" name="message" value="message"></form><br>';
 
     }else{
-        echo '<input type="submit" class="selectButtonNarrow" name="follow" value="follow"><br>';
+        echo '<form method="post" action=""><input type="submit" class="selectButtonNarrow" name="follow" value="follow"></form><br>';
 
     }
     ?>
