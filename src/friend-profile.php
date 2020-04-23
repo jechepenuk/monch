@@ -1,4 +1,6 @@
 <?php
+$message="";
+
 include_once "access-db.php";
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['friend'] . "'");
 $row = mysqli_fetch_array($result);
@@ -47,6 +49,17 @@ if (isset($_POST['unfollow'])){
 if (isset($_POST['message'])){
     header('Location: ./chat.php?user_id=' . $_GET['user_id'] . '&friend=' . $_GET['friend']);
 }
+if (isset($_POST['search'])){
+    $username=$_POST['search'];
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
+    if (mysqli_num_rows($result2)<1){
+        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+    }else{
+        $user=mysqli_fetch_array($result2);
+        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+    }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -70,9 +83,12 @@ if (isset($_POST['message'])){
 
                 <!-- the line of code commented below is important when we upload the work on a server. for now, i'm using an alternative below -->
                 <!-- <li><a href="javascript:loadPage('./login.html')">login</a> </li> -->
+
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>    
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>         
                 <li><a class="navlink" href="../index.php">logout</a> </li>
+                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+
 
             </ul>
         </div>
@@ -83,7 +99,13 @@ if (isset($_POST['message'])){
 
     </div>
     <hr class="hr-navbar">
-
+    <div class="message">
+    
+    <?php if($message!="") { 
+        echo $message; 
+        
+        } ?> 
+    </div> 
     <h1 class="welcome-page-title"><?php echo $row['username'];?></h1>
 
     <br><br>

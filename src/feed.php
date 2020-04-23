@@ -1,5 +1,11 @@
 <?php
+$message="";
+
 include_once "access-db.php";
+$me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+$myinfo=mysqli_fetch_array($me);
+$following=explode(",", $myinfo['following']);  
+
 $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
 if (isset($_POST['like'])){
     $postid=$_POST['postid'];
@@ -24,6 +30,17 @@ if (isset($_POST['addcomment'])){
     $updatedComments=$currComments . ',' . $commenter . ': ' . $comment;
     mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
     header('Refresh: 0');
+}
+if (isset($_POST['search'])){
+    $username=$_POST['search'];
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
+    if (mysqli_num_rows($result2)<1){
+        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+    }else{
+        $user=mysqli_fetch_array($result2);
+        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+    }
+
 }
 
 ?>
@@ -50,6 +67,7 @@ if (isset($_POST['addcomment'])){
                 <!-- <li><a href="javascript:loadPage('./login.php')">login</a> </li> -->
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
                 <li><a class="navlink" href="../index.php">logout</a></li>
+                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
             </ul>
         </div>
@@ -60,12 +78,20 @@ if (isset($_POST['addcomment'])){
 
     </div>
     <hr class="hr-navbar">
+    <div class="message">
+    
+    <?php if($message!="") { 
+        echo $message; 
+        
+        } ?> 
+    </div> 
     <h1 class="welcome-page-title">Your Feed</h1>
 
     <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">add post</button><br><br>
     <hr class='navbar'><br><br>
 
     <?php while ($singlePost=mysqli_fetch_array($postsresults)){ 
+    if (in_array($singlePost['user_id'], $following) || $singlePost['user_id']==$_GET['user_id'] ){
         if ($singlePost['user_id']==$_GET['user_id']){
             $link="./profile.php?user_id=" . $_GET['user_id'];
         }else{
@@ -91,7 +117,9 @@ if (isset($_POST['addcomment'])){
             echo '<p class="center">'.$commArray[$i].'</p><br>';
         }
         echo "<hr class='navbar'><br><br>";
-        }?>
+        }
+    }
+    ?>
 
     </div>
     

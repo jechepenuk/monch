@@ -1,28 +1,8 @@
 <?php
 $message="";
-
-include_once 'access-db.php';
 $userid=$_GET['user_id'];
+include_once 'access-db.php';
 
-if (isset($_POST['submit'])) {
-    $caption=$_POST['caption'];
-    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-        echo "<br />Please choose a file.";
-    } else {
-        $target_dir = "public/";
-        $temp_name = $_FILES['imagefile']['tmp_name'];
-        $name = $_FILES['imagefile']['name'];
-        $path = pathinfo($name);
-        $filename=$path['filename'];
-        $ext=$path['extension'];
-        $mime = $_FILES['imagefile']['type'];   
-        $location=$target_dir.$filename.".".$ext;
-        move_uploaded_file($temp_name,$location);
-        $sql = "INSERT INTO posts (`caption`, `user_id`, `image`, `mime`) VALUES ('".$caption."', '".$userid."','".$location."','".$mime."' )";
-        mysqli_query($conn,$sql);
-        header('Location: ./feed.php?user_id=' . $userid);
-    }
-}
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
@@ -57,7 +37,6 @@ if (isset($_POST['search'])){
                 <li><a class="navlink" href="feed.php?user_id=<?php echo $userid;?>">feed</a> </li>
                 <li><a class="navlink" href="profile.php?user_id=<?php echo $userid;?>">profile</a> </li>
                 <li><a class="navlink" href="../index.php">logout</a> </li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
 
             </ul>
@@ -79,12 +58,11 @@ if (isset($_POST['search'])){
     <div class="center">
 <br>
 <br>
-    <form method="post" action="" enctype="multipart/form-data">
-            <input type="text" name="caption" placeholder="say something...">
-            <input type="file" name="imagefile">
-            <input type="submit" name="submit" value="Upload">
-        </form>
-    </div>
+<h1 class="welcome-page-title">Oh no!</h1>
+<h1 class="welcome-page-title">The profile you were looking for doesn't exist!</h1>
+<h1 class="welcome-page-title">You can try searching again below!</h1><br><br><br>
+<form method="post"><input class="log_in_input" type="text" name="search" placeholder="find a user..."></form>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

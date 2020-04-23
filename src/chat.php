@@ -1,8 +1,22 @@
 <?php
+$message="";
+
 include_once 'access-db.php';
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['friend'] . "'");
 $row = mysqli_fetch_array($result);
 $friend=$row['username'];
+
+if (isset($_POST['search'])){
+    $username=$_POST['search'];
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
+    if (mysqli_num_rows($result2)<1){
+        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+    }else{
+        $user=mysqli_fetch_array($result2);
+        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +41,8 @@ $friend=$row['username'];
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="../index.php">logout</a> </li>
+                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+
 
             </ul>
         </div>
@@ -37,7 +53,13 @@ $friend=$row['username'];
 
     </div>
     <hr class="hr-navbar">
-
+    <div class="message">
+    
+    <?php if($message!="") { 
+        echo $message; 
+        
+        } ?> 
+    </div> 
     <h1 class="welcome-page-title">welcome to chat with <?php echo $friend; ?></h1>
 
 

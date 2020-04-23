@@ -1,4 +1,6 @@
 <?php
+$message="";
+
 include_once "access-db.php";
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $row = mysqli_fetch_array($result);
@@ -16,6 +18,17 @@ if (isset($_POST['addcomment'])){
     $updatedComments=$currComments . ',' . $commenter . ': ' . $comment;
     mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
     header('Refresh: 0');
+}
+if (isset($_POST['search'])){
+    $username=$_POST['search'];
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
+    if (mysqli_num_rows($result2)<1){
+        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+    }else{
+        $user=mysqli_fetch_array($result2);
+        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+    }
+
 }
 ?>
 <!DOCTYPE html>
@@ -42,6 +55,7 @@ if (isset($_POST['addcomment'])){
                 <!-- <li><a href="javascript:loadPage('./login.html')">login</a> </li> -->
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $row['user_id']; ?>">my feed</a> </li>             
                 <li><a class="navlink" href="../index.html">logout</a> </li>
+                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
             </ul>
         </div>

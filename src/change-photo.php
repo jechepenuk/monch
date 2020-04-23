@@ -1,4 +1,6 @@
 <?php
+$message="";
+
 include_once 'access-db.php';
 if (isset($_POST['submit'])) {
     $userid=$_GET['user_id'];
@@ -12,6 +14,17 @@ if (isset($_POST['submit'])) {
 
     }
     header('Location: ./profile.php?user_id=' .$userid);
+}
+if (isset($_POST['search'])){
+    $username=$_POST['search'];
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
+    if (mysqli_num_rows($result2)<1){
+        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+    }else{
+        $user=mysqli_fetch_array($result2);
+        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+    }
+
 }
 
 ?>
@@ -38,6 +51,8 @@ if (isset($_POST['submit'])) {
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="../index.php">logout</a> </li>
+                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+
 
             </ul>
         </div>
@@ -48,7 +63,13 @@ if (isset($_POST['submit'])) {
 
     </div>
     <hr class="hr-navbar">
-
+    <div class="message">
+    
+    <?php if($message!="") { 
+        echo $message; 
+        
+        } ?> 
+    </div> 
     <div class="center">
         <p> * must be jpeg format * </p>
         <form method="post" action="" enctype="multipart/form-data">
