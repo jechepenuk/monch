@@ -30,6 +30,29 @@ if (isset($_POST['search'])){
     }
 
 }
+if (isset($_POST['like'])){
+    $postid=$_POST['postid'];
+    $likedThings=$myinfo['likedposts'];
+    $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
+    $postinfo=mysqli_fetch_array($post);
+    $liked=explode(",", $likedThings);
+    if (!in_array($postid,$liked)){
+        $likes=$postinfo['likes'];
+        $likes=$likes+1;
+        $updateLikes=$likedThings . $postid;
+        mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+        mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
+        header('Refresh: 0');
+    }else{
+        $liked=\array_diff($postid,$liked);
+        $updateLikes=implode(",",$liked);
+        $likes=$postinfo['likes'];
+        $likes=$likes-1;
+        mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
+        mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+        header('Refresh: 0');
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,8 +114,8 @@ if (isset($_POST['search'])){
         echo "<p class='center'>$linkname</a><br><br>";
         echo "<a class='center'>'".$posts['caption']."'</a><br>";
         echo '<img class="profilePic" src="'. $posts['image'].'"alt="you"><br><br>'; 
-        echo '<input type="hidden" name="postid" value='.$posts['id'].'>
-            <input type="submit" name="like" class="rate" value="&hearts; '.$posts['likes'].'"/><br>';
+        echo '<form method="post" action=""><input type="hidden" name="postid" value='.$posts['id'].'>
+            <input type="submit" name="like" class="rate" value="&hearts; '.$posts['likes'].'"/></form><br>';
         echo '<form class="center" method="post" action="">
             <input type="text" id="comment" name="comment" placeholder="say something...">  
             <input type="hidden" name="postid" value='.$posts['id'].'>

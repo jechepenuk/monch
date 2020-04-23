@@ -5,16 +5,33 @@ include_once "access-db.php";
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $myinfo=mysqli_fetch_array($me);
 $following=explode(",", $myinfo['following']);  
-
 $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
+
+
 if (isset($_POST['like'])){
     $postid=$_POST['postid'];
+    $likedThings=$myinfo['likedposts'];
     $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
     $postinfo=mysqli_fetch_array($post);
-    $likes=$postinfo['likes'];
-    $likes++;
-    mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
-    header('Refresh: 0');
+    $liked=explode(",", $likedThings);
+    if (!in_array($postid,$liked)){
+        $likes=$postinfo['likes'];
+        $likes=$likes+1;
+        $updateLikes=$likedThings . $postid;
+        mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+        mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
+        header('Refresh: 0');
+    }else{
+        $liked=\array_diff($postid,$liked);
+        $updateLikes=implode(",",$liked);
+        $likes=$postinfo['likes'];
+        $likes=$likes-1;
+        mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
+        mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+        header('Refresh: 0');
+
+    }
+
 
 }
 if (isset($_POST['addcomment'])){
@@ -106,8 +123,8 @@ if (isset($_POST['search'])){
         echo "<a class='center' href=".$link.">$linkname</a><br>";
         echo "<a class='center'>'".$singlePost['caption']."'</a><br>";
         echo '<img class="feedPic" src="'. $singlePost['image'].'"alt="you"><br>'; 
-        echo '<input type="hidden" name="postid" value='.$singlePost['id'].'>
-            <input type="submit" name="like" class="rate" value="&hearts; '.$singlePost['likes'].'"/><br>';
+        echo '<form method="post" action=""><input type="hidden" name="postid" value='.$singlePost['id'].'>
+            <input type="submit" name="like" class="rate" value="&hearts; '.$singlePost['likes'].'"></form><br>';
         echo '<form class="center" method="post" action="">
             <input type="text" id="comment" name="comment" placeholder="say something...">  
             <input type="hidden" name="postid" value='.$singlePost['id'].'>
