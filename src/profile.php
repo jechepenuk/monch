@@ -53,6 +53,7 @@ if (isset($_POST['like'])){
         header('Refresh: 0');
 
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

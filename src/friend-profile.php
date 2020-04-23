@@ -32,13 +32,12 @@ if (isset($_POST['unfollow'])){
     $user=$_GET['user_id'];
     $friend=$_GET['friend'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $user . "'");
-    $user = mysqli_fetch_array($result2);
+    $row = mysqli_fetch_array($result2);
 
-    $currfollow=$user['following'];
-    $currfollow=str_replace($friend,"",$currfollow);
-    
+    $currfollow=$row['following'];
+    $currfollow=\array_diff($friend,$currfollow);  
     mysqli_query($conn,"UPDATE users SET following='" . $currfollow . "' WHERE user_id='" . $user . "'"); 
-    // header('Refresh: 0');
+    header('Refresh: 0');
 }
 if (isset($_POST['message'])){
     header('Location: ./chat.php?user_id=' . $_GET['user_id'] . '&friend=' . $_GET['friend']);
@@ -77,6 +76,7 @@ if (isset($_POST['like'])){
         header('Refresh: 0');
 
     }
+}
 
 ?>
 <!DOCTYPE html>
