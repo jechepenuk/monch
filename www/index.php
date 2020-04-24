@@ -34,6 +34,11 @@
 
     <h1 class="welcome-page-title">Welcome to Community Foods</h1>
 
+    <?php
+        echo "IN CODE/n";
+        echo $_ENV['MYSQL_HOST'];
+    ?>
+
     <br><br><br><br><br><br><br><br><br>
         <button class="big" onclick="window.location.href = 'login.php'">Log In</button>
         <button class= "big" onclick="window.location.href = 'register.php'">Register</button>
