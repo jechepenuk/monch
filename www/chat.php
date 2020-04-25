@@ -10,10 +10,12 @@ if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
-        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+        $URL="http://localhost:8000/user-not-found.php?user_id=".$_GET['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
         $user=mysqli_fetch_array($result2);
-        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+        $URL="http://localhost:8000/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }
 
 }
@@ -26,7 +28,6 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -40,7 +41,7 @@ if (isset($_POST['search'])){
             <ul>
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
-                <li><a class="navlink" href="../index.php">logout</a> </li>
+                <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
 
@@ -48,7 +49,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="../index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
         </div>
 
     </div>
@@ -65,10 +66,7 @@ if (isset($_POST['search'])){
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-    <script>
-        
-    </script>
+
 
 </body>
 

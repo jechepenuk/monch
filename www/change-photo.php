@@ -13,16 +13,19 @@ if (isset($_POST['submit'])) {
         mysqli_query($conn, "UPDATE users SET  user_image='" . $image . "' WHERE user_id='" . $userid . "'");
 
     }
-    header('Location: ./profile.php?user_id=' .$userid);
+    $URL="http://localhost:8000/profile.php?user_id=" .$userid; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
-        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+        $URL="http://localhost:8000/user-not-found.php?user_id=".$_GET['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
         $user=mysqli_fetch_array($result2);
-        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+        $URL="http://localhost:8000/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }
 
 }
@@ -50,7 +53,7 @@ if (isset($_POST['search'])){
             <ul>
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
-                <li><a class="navlink" href="../index.php">logout</a> </li>
+                <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
 
@@ -58,7 +61,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="../index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
         </div>
 
     </div>
@@ -80,10 +83,7 @@ if (isset($_POST['search'])){
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-    <script>
-        
-    </script>
+
 
 </body>
 

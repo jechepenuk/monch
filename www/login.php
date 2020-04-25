@@ -11,7 +11,8 @@ if(count($_POST)>0) {
         $row = mysqli_fetch_array($result);
         $message = "You are successfully authenticated!";
         $var1=$row['user_id'];
-        header('Location: ./feed.php?user_id=' .$var1);
+        $URL="http://localhost:8000/feed.php?user_id=" .$var1; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 	}
 }
 ?>
@@ -33,12 +34,12 @@ if(count($_POST)>0) {
         <div class="menu_welcomePage">
             <ul>
                 <li><a class="navlink" href="./register.php">create account</a> </li>
-                <li><a class="navlink" href="../index.php">home</a> </li>
+                <li><a class="navlink" href="./index.php">home</a> </li>
             </ul>
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="../index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
         </div>
     </div>
     <hr class="hr-navbar">
@@ -49,15 +50,13 @@ if(count($_POST)>0) {
     <h1 class="welcome-page-title">Log In</h1>
 
     <div id="tutor_signup_div">
-        <form name="frmUser" method='post' action="">
-
+        <form name="frmUser" method="post" action="">
         <div class="message">
-    
-        <?php if($message!="") { 
-            echo $message; 
-            
-            } ?> 
-        </div> 
+                <?php 
+                if($message!="") { 
+                    echo $message; 
+                } ?> 
+            </div> 
 
             <label for="email">User Email</label>
             <input class="log_in_input" type="text" id="email" name="email" placeholder="Email">
@@ -69,12 +68,7 @@ if(count($_POST)>0) {
             <br>
             <br>
             <br>
-            <!-- <a href="user-forgot-student.html" id="forgot_link_id"> forgot password? </a> -->
         </form>
-    </div>
-
-    <script src="index.js"></script>
-    
+    </div>    
 </body>
-
 </html>

@@ -20,7 +20,8 @@ if (isset($_POST['like'])){
         $updateLikes=$likedThings . $postid;
         mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
         mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
-        header('Refresh: 0');
+        $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
         $liked=\array_diff($postid,$liked);
         $updateLikes=implode(",",$liked);
@@ -28,8 +29,8 @@ if (isset($_POST['like'])){
         $likes=$likes-1;
         mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
         mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
-        header('Refresh: 0');
-
+        $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }
 
 
@@ -46,16 +47,19 @@ if (isset($_POST['addcomment'])){
     $currComments=$postinfo['comments'];
     $updatedComments=$currComments . ',' . $commenter . ': ' . $comment;
     mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
-    header('Refresh: 0');
+    $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
-        header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
+        $URL="http://localhost:8000/user-not-found.php?user_id=".$_GET['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
         $user=mysqli_fetch_array($result2);
-        header('Location: ./friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$user['user_id']);
+        $URL="http://localhost:8000/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }
 
 }
@@ -83,14 +87,14 @@ if (isset($_POST['search'])){
                 <!-- the line of code commented below is important when we upload the work on a server. for now, i'm using an alternative below -->
                 <!-- <li><a href="javascript:loadPage('./login.php')">login</a> </li> -->
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
-                <li><a class="navlink" href="../index.php">logout</a></li>
+                <li><a class="navlink" href="./index.php">logout</a></li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
             </ul>
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="../index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
         </div>
 
     </div>
@@ -141,9 +145,7 @@ if (isset($_POST['search'])){
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-    <script>
-    </script>
+
 
 </body>
 
