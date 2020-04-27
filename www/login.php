@@ -30,7 +30,7 @@ if(count($_POST)>0) {
 </head>
 
 <body>
-    <div class="header">
+    <div class="main-container">
         <div class="menu_welcomePage">
             <ul>
                 <li><a class="navlink" href="./register.php">create account</a> </li>
@@ -58,10 +58,10 @@ if(count($_POST)>0) {
                 } ?> 
             </div> 
 
-            <label for="email">User Email</label>
+            <label for="email">User Email</label><br>
             <input class="log_in_input" type="text" id="email" name="email" placeholder="Email">
-
-            <label for="password">Password</label>
+            <br>
+            <label for="password">Password</label><br>
             <input class="log_in_input" type="password" id="password" name="paswd">
             
             <input id="log_in_button" name="submit" type="submit" value="Submit">

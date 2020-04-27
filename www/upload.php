@@ -6,7 +6,7 @@ $userid=$_GET['user_id'];
 
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];
-    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+    if (!getimagesize($_FILES['imagefile']['tmp_name'])){
         echo "<br>Please choose a file.";
     } else {
         $target_dir = "public/";
@@ -18,16 +18,18 @@ if (isset($_POST['submit'])) {
         $location=$target_dir.$filename.".".$ext;
         move_uploaded_file($temp_name,$location);
         $sql = "INSERT INTO posts (`caption`, `user_id`, `image`) VALUES ('".$caption."', '".$userid."','".$location."')";
-        mysqli_query($conn,$sql);
+        $r=mysqli_query($conn,$sql);
+        if (!$r){
+            echo mysqli_error($conn);
+        }else{
         $URL="http://localhost:8000/feed.php?user_id=" .$userid; 
         echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
-    }
+    }}
 }
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
-        // header('Location: ./user-not-found.php?user_id='.$_GET['user_id']);
         $URL="http://localhost:8000/user-not-found.php?user_id=".$_GET['user_id']; 
         echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
@@ -73,6 +75,7 @@ if (isset($_POST['search'])){
     </div>
     <hr class="hr-navbar">
     <div class="message">
+
     
     <?php if($message!="") { 
         echo $message; 
