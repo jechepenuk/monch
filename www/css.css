@@ -1,5 +1,5 @@
 :root {
-    --teal: #aa7264;
+    --teal: #c7a8a0;
 }
 body{
     background-color: var(--teal);
@@ -97,12 +97,6 @@ hr.hr-navbar {
 .dropbtn:hover {
     color: white;
 }
-.centerp{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;    
-}
 
 .logo a {
     color: black;
@@ -178,7 +172,15 @@ ul li a:hover {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
+.addcomment {
+    width: 30%;
+    padding: 4px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 .input_text_field {
     padding-bottom: 40px;
 }
@@ -332,15 +334,32 @@ input[type="submit"]:hover {
     text-align: center;
     margin-top: 140px;
 }
-
-.center {
+.smallPic{
+    width: 40px;
+    height: 40px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid white;
+}
+/* .center {
     margin-top: 2%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     border-radius: 8px;
-    font-size: medium;
+    font-size: large;
+} */
+.centername {
+    margin-top: 2%;
+    margin: 0 auto;
+    border-radius: 8px;
+    font-size: large;
+    color: white;
 }
+
 
 .calendarView {
     width: 30%;
@@ -437,6 +456,9 @@ input[type="submit"]:hover {
 .center {
     margin: 0 auto;
     text-align: center;
+    display: block;
+
+
 }
 
 .rate {
@@ -458,4 +480,7 @@ input[type="submit"]:hover {
 
 }
 
-
+.inline{
+    margin-left: auto;
+    margin-right: auto;
+}

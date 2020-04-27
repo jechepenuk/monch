@@ -14,27 +14,21 @@ if (isset($_POST['like'])){
     $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
     $postinfo=mysqli_fetch_array($post);
     $liked=explode(",", $likedThings);
-    if (!in_array($postid,$liked)){
-        $likes=$postinfo['likes'];
+    $counts = array_count_values($liked);
+    $likes=$postinfo['likes'];
+    $count=$counts[$postid];
+    if (!in_array($postid, $liked) || $count % 2 == 0){
         $likes=$likes+1;
-        $updateLikes=$likedThings . $postid;
-        mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
-        mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
-        $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
-        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
-        $liked=\array_diff($postid,$liked);
-        $updateLikes=implode(",",$liked);
-        $likes=$postinfo['likes'];
-        $likes=$likes-1;
-        mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
-        mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
-        $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
-        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+        $likes=$likes-1;    
     }
-
-
+    $updateLikes=$likedThings . $postid . ",";
+    mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+    mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
+    $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
+
 if (isset($_POST['addcomment'])){
     $postid=$_POST['postid'];
     $commenter=$_GET['user_id'];
@@ -50,6 +44,8 @@ if (isset($_POST['addcomment'])){
     $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
+
+
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
@@ -58,10 +54,14 @@ if (isset($_POST['search'])){
         echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
         $user=mysqli_fetch_array($result2);
-        $URL="http://localhost:8000/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
-        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+        if ($user['user_id']==$_GET['user_id']){
+            $URL="http://localhost:8000/profile.php?user_id=".$_GET['user_id']; 
+            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+        }else{
+            $URL="http://localhost:8000/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
+            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+        }
     }
-
 }
 
 ?>
@@ -106,7 +106,7 @@ if (isset($_POST['search'])){
         
         } ?> 
     </div> 
-    <h1 class="welcome-page-title">Your Feed</h1>
+    <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?>.</h1>
 
     <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">add post</button><br><br>
     <hr class='navbar'><br><br>
@@ -123,17 +123,26 @@ if (isset($_POST['search'])){
         $linkname=$user['username'];
         $comments=$singlePost['comments'];
         $commArray=explode(",", $comments);  
+        if ($user['user_image']){
+            echo '<img class="smallPic" src="data:image/jpeg;base64,'. $user['user_image'] .'"/>';
+        }else{
+            echo '<img class="smallPic" src="public/user-default.jpg" alt="you"';
+        }
+        echo "<br>";
 
-        echo "<a class='center' href=".$link.">$linkname</a><br>";
-        echo "<a class='center'>'".$singlePost['caption']."'</a><br>";
+        echo "<a class='center' href=".$link.">$linkname</a>";
+        if ($singlePost['caption']){
+            echo "<a class='center'>\"".$singlePost['caption']."\"</a>";
+        }
+        echo "<br>";
         echo '<img class="feedPic" src="'. $singlePost['image'].'"alt="you"><br>'; 
-        echo '<form method="post" action=""><input type="hidden" name="postid" value='.$singlePost['id'].'>
-            <input type="submit" name="like" class="rate" value="&hearts; '.$singlePost['likes'].'"></form><br>';
         echo '<form class="center" method="post" action="">
-            <input type="text" id="comment" name="comment" placeholder="say something...">  
+            <input class="addcomment" type="text" id="comment" name="comment" placeholder="say something...">  
             <input type="hidden" name="postid" value='.$singlePost['id'].'>
             <input type="submit" name="addcomment" value="add">
             </form><br>';
+        echo '<form method="post" action=""><input type="hidden" name="postid" value='.$singlePost['id'].'>
+            <input type="submit" name="like" class="rate" value="&hearts; '.$singlePost['likes'].'"></form>';    
         for($i=0; $i<count($commArray); $i++){
             echo '<p class="center">'.$commArray[$i].'</p><br>';
         }
