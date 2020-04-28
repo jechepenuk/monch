@@ -31,6 +31,8 @@ if(count($_POST)>0) {
 
 <body>
     <div class="main-container">
+    <div class="innerwrapper">
+    <div class="header">
         <div class="menu_welcomePage">
             <ul>
                 <li><a class="navlink" href="./register.php">create account</a> </li>
@@ -69,6 +71,7 @@ if(count($_POST)>0) {
             <br>
             <br>
         </form>
-    </div>    
+    </div> 
+    </div>   
 </body>
 </html>

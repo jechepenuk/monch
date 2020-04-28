@@ -51,6 +51,7 @@ if (isset($_POST['search'])){
     <title>CF</title>
 </head>
 <body class="main-container">
+<div class="innerwrapper">
 
     <div class="header">
 
@@ -86,7 +87,7 @@ if (isset($_POST['search'])){
         </form>
     </div>
 
-
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 

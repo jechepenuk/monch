@@ -53,6 +53,7 @@
     <title>CF</title>
 </head>
 <body>
+<div class="innerwrapper">
 
     <div class="header">
 
@@ -105,7 +106,7 @@
         </form>
 
     </div>
-
+</div>
     </body>
     </html>
     <?php ?>

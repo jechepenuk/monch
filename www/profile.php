@@ -2,9 +2,12 @@
 $message="";
 
 include_once "access-db.php";
+$me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+$myinfo=mysqli_fetch_array($me);
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $row = mysqli_fetch_array($result);
 $result2 = mysqli_query($conn,"SELECT * FROM posts WHERE user_id='" . $_GET['user_id'] . "' ORDER BY id DESC ");
+
 if (isset($_POST['addcomment'])){
     $postid=$_POST['postid'];
     $commenter=$_GET['user_id'];
@@ -75,6 +78,7 @@ if (isset($_POST['like'])){
 </head>
 
 <body class="main-container">
+<div class="innerwrapper">
 
     <div class="header">
         <div class="menu_welcomePage">
@@ -106,20 +110,28 @@ if (isset($_POST['like'])){
      echo '<img class="profilePicture" src="public/user-default.jpg" alt="you"';
     }
     ?>    
-    <br>
-    <button class="selectButtonNarrow" onclick="window.location.href = './change-photo.php?user_id=<?php echo $_GET['user_id']; ?>';">change profile picture</button><br><br>
+    <button class="selectButtonNarrow" onclick="window.location.href = './change-photo.php?user_id=<?php echo $_GET['user_id']; ?>';">change</button><br><br>
     <hr class='navbar'><br><br>
     
 
     <br><br>
     <?php while ($posts=mysqli_fetch_array($result2)){ 
+        $link="./profile.php?user_id=" . $_GET['user_id'];
         $linkname=$row['username'];
         $comments=$posts['comments'];
         $commArray=explode(",", $comments); 
-        
-        echo "<p class='center'>$linkname</a><br><br>";
-        echo "<a class='center'>'".$posts['caption']."'</a><br>";
-        echo '<img class="profilePic" src="'. $posts['image'].'"alt="you"><br><br>'; 
+        if ($row['user_image']){
+            echo '<img class="smallPic" src="data:image/jpeg;base64,'. $row['user_image'] .'"/>';
+        }else{
+            echo '<img class="smallPic" src="public/user-default.jpg" alt="you"';
+        }
+        echo "<br>";
+        echo "<a class='proflink' href=".$link.">$linkname</a>";
+        if ($posts['caption']){
+            echo "<a class='center'>\"".$posts['caption']."\"</a>";
+        }
+        echo "<br>";
+        echo '<img class="feedPic" src="'. $posts['image'].'"alt="you"><br><br>'; 
         echo '<form method="post" action=""><input type="hidden" name="postid" value='.$posts['id'].'>
             <input type="submit" name="like" class="rate" value="&hearts; '.$posts['likes'].'"/></form><br>';
         echo '<form class="center" method="post" action="">
@@ -140,7 +152,7 @@ if (isset($_POST['like'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
     </script>
-
+</div>
 </body>
 
 </html>

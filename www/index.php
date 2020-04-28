@@ -11,6 +11,7 @@
 </head>
 
 <body class="main-container">
+<div class="innerwrapper">
 
     <div class="header">
 
@@ -44,7 +45,7 @@
     <script src="index.js"></script>
     <script>
     </script>
-
+</div>
 </body>
 
 </html>

@@ -77,8 +77,9 @@ if (isset($_POST['search'])){
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
-<body class="main-container">
-
+<body>
+    
+    <div class="innerwrapper">
     <div class="header">
 
         <div class="menu_welcomePage">
@@ -103,8 +104,7 @@ if (isset($_POST['search'])){
     
     <?php if($message!="") { 
         echo $message; 
-        
-        } ?> 
+    } ?> 
     </div> 
     <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?>.</h1>
 
@@ -130,7 +130,7 @@ if (isset($_POST['search'])){
         }
         echo "<br>";
 
-        echo "<a class='center' href=".$link.">$linkname</a>";
+        echo "<a class='proflink' href=".$link.">$linkname</a>";
         if ($singlePost['caption']){
             echo "<a class='center'>\"".$singlePost['caption']."\"</a>";
         }
@@ -152,7 +152,6 @@ if (isset($_POST['search'])){
     ?>
 
     </div>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 

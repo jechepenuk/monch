@@ -2,6 +2,8 @@
 $message="";
 
 include_once "access-db.php";
+$me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+$myinfo=mysqli_fetch_array($me);
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['friend'] . "'");
 $row = mysqli_fetch_array($result);
 $result2 = mysqli_query($conn,"SELECT * FROM posts WHERE user_id='" . $_GET['friend'] . "' ORDER BY id DESC ");
@@ -21,7 +23,7 @@ if (isset($_POST['addcomment'])){
     $URL="http://localhost:8000/friend-profile.php?user_id=" . $_GET['user_id'] . '&friend=' . $_GET['friend']; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
-if (isset($_POST['follow'])){
+if (isset($_POST['follow']) || isset($_POST['unfollow'])){
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
     $row2 = mysqli_fetch_array($result2);
     $following=$row2['following'];
@@ -30,18 +32,7 @@ if (isset($_POST['follow'])){
     $URL="http://localhost:8000/friend-profile.php?user_id=" . $_GET['user_id'] . '&friend=' . $_GET['friend']; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
-if (isset($_POST['unfollow'])){
-    $user=$_GET['user_id'];
-    $friend=$_GET['friend'];
-    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $user . "'");
-    $row = mysqli_fetch_array($result2);
 
-    $currfollow=$row['following'];
-    $currfollow=\array_diff($friend,$currfollow);  
-    mysqli_query($conn,"UPDATE users SET following='" . $currfollow . "' WHERE user_id='" . $user . "'"); 
-    $URL="http://localhost:8000/friend-profile.php?user_id=" . $_GET['user_id'] . '&friend=' . $_GET['friend']; 
-    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
-}
 if (isset($_POST['message'])){
     $URL="http://localhost:8000/chat.php?user_id=" . $_GET['user_id'] . '&friend=' . $_GET['friend']; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
@@ -100,6 +91,7 @@ if (isset($_POST['like'])){
 </head>
 
 <body class="main-container">
+<div class="innerwrapper">
 
     <div class="header">
         <div class="menu_welcomePage">
@@ -147,14 +139,13 @@ if (isset($_POST['like'])){
     $userInfo = mysqli_fetch_array($user);
     $following=$userInfo['following'];
     $followarray=explode(",", $following); 
-    if (in_array($_GET['friend'],$followarray)){
-
+    $counts = array_count_values($followarray);
+    $count=$counts[$_GET['friend']];
+    if (!in_array($_GET['friend'], $followarray) || $count % 2 == 0){
+        echo '<form method="post" action=""><input type="submit" class="selectButtonNarrow" name="follow" value="follow"></form><br>';
+    }else{
         echo '<form method="post" action=""><input type="submit" class="selectButtonWhite" name="unfollow" value="unfollow"><br>';
         echo '<input type="submit" class="selectButtonNarrow" name="message" value="message"></form><br>';
-
-    }else{
-        echo '<form method="post" action=""><input type="submit" class="selectButtonNarrow" name="follow" value="follow"></form><br>';
-
     }
     ?>
 
@@ -163,13 +154,22 @@ if (isset($_POST['like'])){
 
     <br><br>
     <?php while ($posts=mysqli_fetch_array($result2)){ 
+        $link="./friend-profile.php?user_id=".$_GET['user_id']. "&friend=" . $singlePost['user_id'];
         $linkname=$row['username'];
         $comments=$posts['comments'];
         $commArray=explode(",", $comments); 
-        
-        echo "<p class='center'>$linkname</a><br><br>";
-        echo "<a class='center'>'".$posts['caption']."'</a><br>";
-        echo '<img class="profilePic" src="'. $posts['image'].'"alt="you"><br><br>'; 
+        if ($row['user_image']){
+            echo '<img class="smallPic" src="data:image/jpeg;base64,'. $row['user_image'] .'"/>';
+        }else{
+            echo '<img class="smallPic" src="public/user-default.jpg" alt="you"';
+        }
+        echo "<br>";
+        echo "<a class='proflink' href=".$link.">$linkname</a>";
+        if ($posts['caption']){
+            echo "<a class='center'>\"".$posts['caption']."\"</a>";
+        }
+        echo "<br>";
+        echo '<img class="feedPic" src="'. $posts['image'].'"alt="you"><br><br>'; 
         echo '<form method="post" action=""><input type="hidden" name="postid" value='.$posts['id'].'>
             <input type="submit" name="like" class="rate" value="&hearts; '.$posts['likes'].'"/></form><br>';
         echo '<form class="center" method="post" action="">
@@ -191,7 +191,7 @@ if (isset($_POST['like'])){
     <script>
 
     </script>
-
+</div>
 </body>
 
 </html>

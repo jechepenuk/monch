@@ -39,6 +39,7 @@ if (isset($_POST['search'])){
     <title>CF</title>
 </head>
 <body class="main-container">
+<div class="innerwrapper">
 
     <div class="header">
 
@@ -68,7 +69,7 @@ if (isset($_POST['search'])){
     </div> 
     <h1 class="welcome-page-title">welcome to chat with <?php echo $friend; ?></h1>
 
-
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
