@@ -99,6 +99,10 @@ ul li {
     display: inline;
     padding: 10px;
 }
+ul li form{
+    display: inline-block;
+    padding-left: 10px;
+}
 
 ul li a {
     color: black;
