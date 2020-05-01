@@ -75,9 +75,54 @@ if (isset($_POST['search'])){
     <title>CF</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+        function refreshchat() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var div=document.getElementById("cont");
+                    var child=div.lastElementChild;
+            
+                    while (child){
+                        div.removeChild(child);
+                        child=div.lastElementChild;
+                    }
+                    var total=this.responseText;
+                    if (total){
+                        var arr=total.split("%%%");
+                        var arrLen=arr.length;
+                        for (var i=arrLen-1; i>=0; i--){
+                            var paragraph=document.createElement("p");
+                            var el=document.createTextNode(arr[i]);
+                            paragraph.appendChild(el);
+                            var d=document.getElementById("cont");
+                            d.appendChild(paragraph);
+                        }
+                    }
+                }
+            };
+            xmlhttp.open("GET", "refresh-chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>", true);
+            xmlhttp.send();
+        }
+
+        function sendFormData(){
+            const formElement=document.getElementById("msg");
+            const formData = new FormData(formElement);
+            document.getElementById("msg").reset();
+            const request= new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                if (this.readyState ===4 && this.status ===200){
+                    console.log(this.responseText);
+                    document.getElementById("chat").innerHTML=this.responseText;
+                }
+            };
+            request.open("POST", "send-message.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>");
+            request.send(formData);
+}
+    </script>
 </head>
 
-<body>
+<body onload="setInterval(refreshposts,3000)">
     
     <div class="innerwrapper">
     <div class="header">
@@ -112,48 +157,47 @@ if (isset($_POST['search'])){
     <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">add post</button><br><br>
     <hr class='navbar'><br><br>
 
-    <?php while ($singlePost=mysqli_fetch_array($postsresults)){ 
-    if (in_array($singlePost['user_id'], $following) || $singlePost['user_id']==$_GET['user_id'] ){
-        if ($singlePost['user_id']==$_GET['user_id']){
-            $link="./profile.php?user_id=" . $_GET['user_id'];
-        }else{
-            $link="./friend-profile.php?user_id=".$_GET['user_id']. "&friend=" . $singlePost['user_id'];
-        }
-        $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $singlePost['user_id'] . "'");
-        $user = mysqli_fetch_array($result2);
-        $linkname=$user['username'];
-        $comments=$singlePost['comments'];
-        $commArray=explode(",", $comments);  
-        if ($user['user_image']){
-            echo '<img class="smallPic" src="data:image/jpeg;base64,'. $user['user_image'] .'"/>';
-        }else{
-            echo '<img class="smallPic" src="public/user-default.jpg" alt="you"';
-        }
-        echo "<br>";
+    <?php 
+    //while ($singlePost=mysqli_fetch_array($postsresults)){ 
+    // if (in_array($singlePost['user_id'], $following) || $singlePost['user_id']==$_GET['user_id'] ){
+    //     if ($singlePost['user_id']==$_GET['user_id']){
+    //         $link="./profile.php?user_id=" . $_GET['user_id'];
+    //     }else{
+    //         $link="./friend-profile.php?user_id=".$_GET['user_id']. "&friend=" . $singlePost['user_id'];
+    //     }
+    //     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $singlePost['user_id'] . "'");
+    //     $user = mysqli_fetch_array($result2);
+    //     $linkname=$user['username'];
+    //     $comments=$singlePost['comments'];
+    //     $commArray=explode(",", $comments);  
+    //     if ($user['user_image']){
+    //         echo '<img class="smallPic" src="data:image/jpeg;base64,'. $user['user_image'] .'"/>';
+    //     }else{
+    //         echo '<img class="smallPic" src="public/user-default.jpg" alt="you"';
+    //     }
+    //     echo "<br>";
 
-        echo "<a class='proflink' href=".$link.">$linkname</a>";
-        if ($singlePost['caption']){
-            echo "<a class='center'>\"".$singlePost['caption']."\"</a>";
-        }
-        echo "<br>";
-        echo '<img class="feedPic" src="'. $singlePost['image'].'"alt="you"><br>'; 
-        echo '<form class="center" method="post" action="">
-            <input class="addcomment" type="text" id="comment" name="comment" placeholder="say something...">  
-            <input type="hidden" name="postid" value='.$singlePost['id'].'>
-            <input type="submit" name="addcomment" value="add">
-            </form><br>';
-        echo '<form method="post" action=""><input type="hidden" name="postid" value='.$singlePost['id'].'>
-            <input type="submit" name="like" class="rate" value="&hearts; '.$singlePost['likes'].'"></form>';    
-        for($i=0; $i<count($commArray); $i++){
-            echo '<p class="center">'.$commArray[$i].'</p><br>';
-        }
-        echo "<hr class='navbar'><br><br>";
-        }
-    }
+    //     echo "<a class='proflink' href=".$link.">$linkname</a>";
+    //     if ($singlePost['caption']){
+    //         echo "<a class='center'>\"".$singlePost['caption']."\"</a>";
+    //     }
+    //     echo "<br>";
+    //     echo '<img class="feedPic" src="'. $singlePost['image'].'"alt="you"><br>'; 
+    //     //add comments or likes
+    //     echo '<form class="center" method="post" action="" onsubmit="sendFormData();return false;>
+    //             <input class="addcomment" type="text" id="comment" name="comment" placeholder="say something...">  
+    //             <input type="hidden" name="postid" value='.$singlePost['id'].'>
+    //             <input type="submit" name="alterPost" class="rate" value="&hearts; '.$singlePost['likes'].'">
+    //         </form>';    
+    //     for($i=0; $i<count($commArray); $i++){
+    //         echo '<p class="center">'.$commArray[$i].'</p><br>';
+    //     }
+    //     echo "<hr class='navbar'><br><br>";
+    //     }
+    // }
     ?>
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 </body>

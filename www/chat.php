@@ -31,7 +31,7 @@ if (isset($_POST['clear'])){
     $result1=mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $me . "' and user2='" . $friend . "'");
     $result2 = mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $friend . "' and user2='" . $me . "'");
     if (mysqli_num_rows($result1)>0){
-        $row2=mysqli_fetch_array($result1);
+        $row=mysqli_fetch_array($result1);
         mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "' WHERE id='" . $row['id'] . "'"); 
     }
     else if(mysqli_num_rows($result2)>0){
@@ -67,7 +67,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                         div.removeChild(child);
                         child=div.lastElementChild;
                     }
-                    console.log(this.responseText);
                     var total=this.responseText;
                     if (total){
                         var arr=total.split("%%%");
