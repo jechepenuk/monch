@@ -86,7 +86,8 @@ if (isset($_POST['like'])){
 
                 <!-- the line of code commented below is important when we upload the work on a server. for now, i'm using an alternative below -->
                 <!-- <li><a href="javascript:loadPage('./login.html')">login</a> </li> -->
-                <li><a class="navlink" href="./feed.php?user_id=<?php echo $row['user_id']; ?>">my feed</a> </li>             
+                <li><a class="navlink" href="./feed.php?user_id=<?php echo $row['user_id']; ?>">my feed</a> </li>  
+                <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>           
                 <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 

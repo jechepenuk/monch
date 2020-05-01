@@ -88,18 +88,18 @@
             </div> 
 
             <label for="lname">Username *</label>
-            <input class="sign_up_input" type="text" id= "username" name="username">
+            <input class="sign_up_input" type="text" id= "username" name="username" placeholder="username" autofocus>
             <br>
             <label for="email"> Email *</label>
-            <input class="sign_up_input" type="text" id= "email" name="email">
+            <input class="sign_up_input" type="text" id= "email" name="email" placeholder="email">
             <br>
             <label for="password">Password *</label>
             <br>
             <label>Requires at least 8 characters, 1 uppercase, 1 lowercase, 1 special character and 1 number.</label>
-            <input class="sign_up_input" type="password" id= "paswd" name="paswd">
+            <input class="sign_up_input" type="password" id= "paswd" name="paswd" placeholder="password">
             <br>
             <label for="password">Confirm Password *</label>
-            <input class="sign_up_input" type="password" id= "paswd2" name="paswd2">
+            <input class="sign_up_input" type="password" id= "paswd2" name="paswd2" placeholder="confirm password">
             <br>
             <input type="submit" id="tutor_signup_submit" value= "Verify"> 
             <br><br><br>

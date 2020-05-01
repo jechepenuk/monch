@@ -61,10 +61,10 @@ if(count($_POST)>0) {
             </div> 
 
             <label for="email">User Email</label><br>
-            <input class="log_in_input" type="text" id="email" name="email" placeholder="Email">
+            <input class="log_in_input" type="text" id="email" name="email" placeholder="email" autofocus>
             <br>
             <label for="password">Password</label><br>
-            <input class="log_in_input" type="password" id="password" name="paswd">
+            <input class="log_in_input" type="password" id="password" name="paswd" placeholder="password">
             
             <input id="log_in_button" name="submit" type="submit" value="Submit">
             <br>
