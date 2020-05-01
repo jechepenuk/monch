@@ -68,7 +68,7 @@ if (isset($_POST['search'])){
 <h1 class="welcome-page-title">Oh no!</h1>
 <h1 class="welcome-page-title">The profile you were looking for doesn't exist!</h1>
 <h1 class="welcome-page-title">You can try searching again below!</h1><br><br><br>
-<form method="post"><input class="log_in_input" type="text" name="search" placeholder="find a user..."></form>
+<form method="post"><input class="ip" type="text" name="search" placeholder="find a user..."></form>
 
 
 
