@@ -2,17 +2,21 @@
 $message="";
 include_once 'access-db.php';
 if(count($_POST)>0) {
-	$result = mysqli_query($conn,"SELECT * FROM users WHERE email='" . $_POST["email"] . "' and password = '". $_POST["paswd"]."'");
+    $pass=$_POST['paswd'];
+	$result = mysqli_query($conn,"SELECT * FROM users WHERE email='" . $_POST["email"] . "'");
 	$count  = mysqli_num_rows($result);
 	if($count==0) {
 		$message = "Invalid email or password!";
 	} else {
-
         $row = mysqli_fetch_array($result);
-        $message = "You are successfully authenticated!";
-        $var1=$row['user_id'];
-        $URL="http://localhost:8000/feed.php?user_id=" .$var1; 
-        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+        if (password_verify($pass,$row['password'])){
+            $var1=$row['user_id'];
+            $URL="http://localhost:8000/feed.php?user_id=" .$var1; 
+            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+        }else{
+            $message = "Invalid email or password!";
+        }
+
 	}
 }
 ?>

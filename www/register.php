@@ -24,9 +24,10 @@
        }else if($pass!=$pass2){
            $message="Passwords do not match!";
        }else{
+           $hash = password_hash($pass, PASSWORD_DEFAULT, array('cost' => 9));
            $sql = "INSERT INTO users (username, email, password) VALUES (?,?,?)";
            $stmt= $conn->prepare($sql);
-           $stmt->bind_param("sss", $username, $email, $pass);
+           $stmt->bind_param("sss", $username, $email, $hash);
            $stmt->execute();
 
            $result1 = mysqli_query($conn,"SELECT * FROM users WHERE email='" . $_POST["email"] . "'");
