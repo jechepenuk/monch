@@ -171,7 +171,7 @@ if (isset($_POST['search'])){
                     }
                 }
             };
-            xmlhttp.open("GET", "load-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.open("GET", "ajax/load-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
             xmlhttp.send();
         }
         refreshposts();
@@ -270,7 +270,7 @@ if (isset($_POST['search'])){
                     }
                 }
             };
-            xmlhttp.open("GET", "refresh-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.open("GET", "ajax/refresh-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
             xmlhttp.send();
         }
         refreshposts();
@@ -290,7 +290,7 @@ if (isset($_POST['search'])){
                     // document.getElementById("comment").innerHTML=this.responseText;
                 }
             };
-            request.open("POST", "update-post.php?user_id=<?php echo $_GET['user_id'];?>");
+            request.open("POST", "ajax/update-post.php?user_id=<?php echo $_GET['user_id'];?>");
             request.send(formData);
         }
     </script>

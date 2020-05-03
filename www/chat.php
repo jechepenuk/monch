@@ -81,7 +81,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                     }
                 }
             };
-            xmlhttp.open("GET", "refresh-chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>", true);
+            xmlhttp.open("GET", "ajax/refresh-chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>", true);
             xmlhttp.send();
         }
 
@@ -96,7 +96,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                     document.getElementById("chat").innerHTML=this.responseText;
                 }
             };
-            request.open("POST", "send-message.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>");
+            request.open("POST", "ajax/send-message.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>");
             request.send(formData);
 }
     </script>
@@ -145,9 +145,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     <br>
     <br>
     </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 </body>

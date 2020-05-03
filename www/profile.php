@@ -174,7 +174,7 @@ if (isset($_POST['like'])){
                     }
                 }
             };
-            xmlhttp.open("GET", "load-posts-self.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.open("GET", "ajax/load-posts-self.php?user_id=<?php echo $_GET['user_id'];?>", true);
             xmlhttp.send();
         }
         refreshposts();
@@ -273,7 +273,7 @@ if (isset($_POST['like'])){
                     }
                 }
             };
-            xmlhttp.open("GET", "refresh-posts-self.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.open("GET", "ajax/refresh-posts-self.php?user_id=<?php echo $_GET['user_id'];?>", true);
             xmlhttp.send();
         }
         refreshposts();
@@ -291,7 +291,7 @@ if (isset($_POST['like'])){
                     console.log(this.responseText);
 
             };
-            request.open("POST", "update-post.php?user_id=<?php echo $_GET['user_id'];?>");
+            request.open("POST", "ajax/update-post.php?user_id=<?php echo $_GET['user_id'];?>");
             request.send(formData);
             }
         }
