@@ -25,11 +25,11 @@ body {
     margin-right: auto;
 }
 .feedPic{
-    display: block;
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    height: 350px;
 }
 .navbar{
     border-top: 2px solid black;
@@ -331,7 +331,7 @@ input[type="submit"]:hover {
     box-sizing: border-box;
 }
 .cont{
-    width: 40%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }

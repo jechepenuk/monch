@@ -341,7 +341,6 @@ if (isset($_POST['search'])){
     <hr class='navbar'><br><br>
 
     <div class="cont" id="cont">
-    <p id="p"></p>
     </div>
 
 </body>
