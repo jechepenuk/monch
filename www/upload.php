@@ -97,7 +97,7 @@ if (isset($_POST['search'])){
 <div class="cont">
     <p class="center">-file size should not exceed 2MB-</p><br><br>
     <form method="post" action="" enctype="multipart/form-data">
-            <input class="log_in_input" type="text" name="caption" placeholder="adda a caption..."><br><br>
+            <input class="log_in_input" type="text" name="caption" placeholder="add a caption..."><br><br>
             <input class="log_in_input" type="file" name="imagefile"><br><br>
             <input class="selectButton" type="submit" name="submit" value="post">
         </form>

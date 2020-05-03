@@ -85,11 +85,13 @@ if (isset($_POST['search'])){
         
         } ?> 
     </div> 
-    <div class="center">
-        <p> * must be jpeg format * </p>
+    <br>
+<br>
+    <div class="cont">
+    <p class="center">-file size should not exceed 2MB-</p><br><br>
         <form method="post" action="" enctype="multipart/form-data">
-            <input type="file" name="imagefile">
-            <input type="submit" name="submit" value="Upload">
+            <input class="log_in_input" type="file" name="imagefile">
+            <input class="selectButton" type="submit" name="submit" value="Upload">
         </form>
     </div>
 

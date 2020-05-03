@@ -8,22 +8,6 @@ $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['frie
 $row = mysqli_fetch_array($result);
 $result2 = mysqli_query($conn,"SELECT * FROM posts WHERE user_id='" . $_GET['friend'] . "' ORDER BY id DESC ");
 
-if (isset($_POST['comment'])){
-    $postid=$_POST['postid'];
-    if($_POST['comment']){
-    $commenter=$_GET['user_id'];
-    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $commenter . "'");
-    $row2 = mysqli_fetch_array($result2);
-    $commenter=$row2['username'];
-    $comment=$_POST['comment'];
-    $comment=htmlspecialchars($comment);
-    $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
-    $postinfo=mysqli_fetch_array($post);
-    $currComments=$postinfo['comments'];
-    $updatedComments=$currComments . ',' . $commenter . ': ' . $comment;
-    mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
-    }
-}
 if (isset($_POST['follow']) || isset($_POST['unfollow'])){
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
     $row2 = mysqli_fetch_array($result2);
@@ -56,24 +40,6 @@ if (isset($_POST['search'])){
     }
 
 }
-if (isset($_POST['like'])){
-    $postid=$_POST['postid'];
-    $likedThings=$myinfo['likedposts'];
-    $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
-    $postinfo=mysqli_fetch_array($post);
-    $liked=explode(",", $likedThings);
-    $counts = array_count_values($liked);
-    $likes=$postinfo['likes'];
-    $count=$counts[$postid];
-    if (!in_array($postid, $liked) || $count % 2 == 0){
-        $likes=$likes+1;
-    }else{
-        $likes=$likes-1;    
-    }
-    $updateLikes=$likedThings . $postid . ",";
-    mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
-    mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
-}
 
 ?>
 <!DOCTYPE html>
@@ -100,11 +66,8 @@ if (isset($_POST['like'])){
                         child=div.lastElementChild;
                     }
                     var total=this.responseText;
-                    console.log(total);
                     var arr=total.split("##");
-                    console.log(arr[0])
                     var arrLen=arr.length;
-                    // console.log(arrLen);
                     for (var i=0; i<arrLen-1; i++){
                         var post=arr[i].split("@@");
                         var br = document.createElement("br");
@@ -130,9 +93,7 @@ if (isset($_POST['like'])){
                         var fo=document.createElement("form");
                         fo.className="center";
                         fo.method="post";
-                        fo.action="";
-                        fo.id="updatepost";
-                        // fo.enctype="multipart/form-data";
+                        fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
                         comInput.className="log_in_input";
                         comInput.name="comment";
@@ -142,9 +103,39 @@ if (isset($_POST['like'])){
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
-                        var postid=post[0].split("\n");
-                        console.log(postid[1]);
-                        hidden.value=postid[1];
+                        var postid;
+                        if (i==0){
+                            posts=post[0].split("\n");
+                            postid=posts[1]
+                            hidden.value=postid;
+                        }else{
+                            postid=post[0];
+                            hidden.value=postid;  
+                        }
+                        var ident="updatepost" + postid;
+                        fo.id=ident;
+                        fo.onsubmit=sendFormDataComment;
+
+                        var f=document.createElement("form");
+                        f.className="center";
+                        f.method="post";
+                        f.enctype="multipart/form-data";
+
+                        var hiddenlike=document.createElement("input");
+                        hiddenlike.type="hidden";
+                        hiddenlike.name="postid";
+                        var postid;
+                        if (i==0){
+                            posts=post[0].split("\n");
+                            postid=posts[1]
+                            hiddenlike.value=postid;
+                        }else{
+                            postid=post[0];
+                            hiddenlike.value=postid;  
+                        }
+                        var ident="updatepost" + postid;
+                        f.id=ident;
+                        f.onsubmit=sendFormDataLike;
                         var likeInput=document.createElement("input");
                         likeInput.className="rate";
                         likeInput.type="submit";
@@ -153,36 +144,26 @@ if (isset($_POST['like'])){
                         likeInput.id="like";
                         fo.appendChild(comInput);
                         fo.appendChild(hidden);
-                        fo.appendChild(likeInput);
-                        var com=document.createElement("p");
-                        com.className="center";
-                        com.id="comm";
-                        com.name="comm";
-                        var info=document.createTextNode(post[6]);
-                        com.appendChild(info);
+                        f.appendChild(likeInput);
+                        f.appendChild(hiddenlike)
                         var d=document.getElementById("cont");
-                                               
+               
                         d.appendChild(smallPic);
                         d.appendChild(userlink);
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
                         d.appendChild(fo);
+                        d.appendChild(f);
                         d.appendChild(br4);
+
+                        var com=document.createElement("p");
+                        var info=document.createTextNode(post[6]);
+                        com.className="center";
+                        com.appendChild(info);
                         d.appendChild(com);
                         d.appendChild(br1);
                         d.appendChild(br2);
-                        // d.appendChild(br3);
-                        // console.log(post[6]);
-                        // // com.className="center";
-                        // var commArray=post[6].split(",");
-                        // console.log(commArray.length);
-                        // for (var i=0; i<commArray.length; i++){
-                        //     var com=document.createElement("p");
-                        //     var info=document.createTextNode(commArray[i]);
-                        //     com.appendChild(info);
-                        //     d.appendChild(com);
-                        // }
                     }
                 }
             };
@@ -203,7 +184,6 @@ if (isset($_POST['like'])){
                         child=div.lastElementChild;
                     }
                     var total=this.responseText;
-                    console.log(total);
                     var arr=total.split("##");
                     var arrLen=arr.length;
                     for (var i=0; i<arrLen-1; i++){
@@ -228,60 +208,80 @@ if (isset($_POST['like'])){
                         caption.className="center";
                         var ele=document.createTextNode(post[1]);
                         caption.appendChild(ele);  
-                        var form=document.createElement("form");
-                        form.className="center";
-                        form.method="post";
-                        form.action="";
-                        form.id="updatepost";
-                        form.onSubmit="sendFormData();return false;";
-                        form.enctype="multipart/form-data";
+                        var fo=document.createElement("form");
+                        fo.className="center";
+                        fo.method="post";
+                        fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
                         comInput.className="log_in_input";
                         comInput.name="comment";
                         comInput.type="text";
+                        comInput.id="comm";
                         comInput.placeholder="say something...";
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
-                        hidden.value=post[0];
+                        var postid;
+                        if (i==0){
+                            posts=post[0].split("\n");
+                            postid=posts[1]
+                            hidden.value=postid;
+                        }else{
+                            postid=post[0];
+                            hidden.value=postid;  
+                        }
+                        var ident="updatepost" + postid;
+                        fo.id=ident;
+                        fo.onsubmit=sendFormDataComment;
+
+                        var f=document.createElement("form");
+                        f.className="center";
+                        f.method="post";
+                        f.enctype="multipart/form-data";
+
+                        var hiddenlike=document.createElement("input");
+                        hiddenlike.type="hidden";
+                        hiddenlike.name="postid";
+                        var postid;
+                        if (i==0){
+                            posts=post[0].split("\n");
+                            postid=posts[1]
+                            hiddenlike.value=postid;
+                        }else{
+                            postid=post[0];
+                            hiddenlike.value=postid;  
+                        }
+                        var ident="updatepost" + postid;
+                        f.id=ident;
+                        f.onsubmit=sendFormDataLike;
                         var likeInput=document.createElement("input");
                         likeInput.className="rate";
                         likeInput.type="submit";
                         likeInput.name="like";
                         likeInput.value=post[5];
                         likeInput.id="like";
-                        form.appendChild(comInput);
-                        form.appendChild(hidden);
-                        form.appendChild(likeInput);
-                        var com=document.createElement("p");
-                        com.className="center";
-                        com.id="comment";
-                        com.name="comment";
-                        var info=document.createTextNode(post[6]);
-                        com.appendChild(info);
+                        fo.appendChild(comInput);
+                        fo.appendChild(hidden);
+                        f.appendChild(likeInput);
+                        f.appendChild(hiddenlike)
                         var d=document.getElementById("cont");
-                                               
+               
                         d.appendChild(smallPic);
                         d.appendChild(userlink);
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
-                        d.appendChild(form);
+                        d.appendChild(fo);
+                        d.appendChild(f);
                         d.appendChild(br4);
+
+                        var com=document.createElement("p");
+                        var info=document.createTextNode(post[6]);
+                        com.className="center";
+                        com.appendChild(info);
                         d.appendChild(com);
                         d.appendChild(br1);
                         d.appendChild(br2);
-                        // d.appendChild(br3);
-                        // console.log(post[6]);
-                        // // com.className="center";
-                        // var commArray=post[6].split(",");
-                        // console.log(commArray.length);
-                        // for (var i=0; i<commArray.length; i++){
-                        //     var com=document.createElement("p");
-                        //     var info=document.createTextNode(commArray[i]);
-                        //     com.appendChild(info);
-                        //     d.appendChild(com);
-                        // }
                     }
                 }
             };
@@ -290,22 +290,39 @@ if (isset($_POST['like'])){
         }
         refreshposts();
 
-        function test(){
-            alert("working");
+        function sendFormDataComment(elem){
+            event.preventDefault();
+            if(document.getElementById(elem.target.id)){
+                const formElement=document.getElementById(elem.target.id);
+                const formData = new FormData(formElement);
+                document.getElementById(elem.target.id).reset();
+                const request= new XMLHttpRequest();
+                request.onreadystatechange = function(){
+                    if (this.readyState ===4 && this.status ===200){
+                        console.log(this.responseText);
+                        loadposts();
+                    }
+                };
+                request.open("POST", "ajax/update-post-comment.php?user_id=<?php echo $_GET['user_id'];?>");
+                request.send(formData);
+            }
+
         }
-        function sendFormData(){
-            const formElement=document.getElementById("updatepost");
+
+        function sendFormDataLike(elem){
+            event.preventDefault();
+            const formElement=document.getElementById(elem.target.id);
             const formData = new FormData(formElement);
-            document.getElementById("updatepost").reset();
+            document.getElementById(elem.target.id).reset();
             const request= new XMLHttpRequest();
             request.onreadystatechange = function(){
                 if (this.readyState ===4 && this.status ===200){
                     console.log(this.responseText);
-
+                    loadposts();
+                }
             };
-            request.open("POST", "ajax/update-post.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>");
+            request.open("POST", "ajax/update-post-like.php?user_id=<?php echo $_GET['user_id'];?>");
             request.send(formData);
-            }
         }
     </script>
 

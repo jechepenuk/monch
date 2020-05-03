@@ -3,10 +3,10 @@ $message="";
 include_once 'access-db.php';
 if(count($_POST)>0) {
     $pass=$_POST['paswd'];
-	$result = mysqli_query($conn,"SELECT * FROM users WHERE email='" . $_POST["email"] . "'");
+	$result = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $_POST["username"] . "'");
 	$count  = mysqli_num_rows($result);
 	if($count==0) {
-		$message = "Invalid email or password!";
+		$message = "Invalid username or password!";
 	} else {
         $row = mysqli_fetch_array($result);
         if (password_verify($pass,$row['password'])){
@@ -14,7 +14,7 @@ if(count($_POST)>0) {
             $URL="http://localhost:8000/feed.php?user_id=" .$var1; 
             echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
         }else{
-            $message = "Invalid email or password!";
+            $message = "Invalid username or password!";
         }
 
 	}
@@ -64,8 +64,8 @@ if(count($_POST)>0) {
                 } ?> 
             </div> 
 
-            <label for="email">User Email</label><br>
-            <input class="log_in_input" type="text" id="email" name="email" placeholder="email" autofocus>
+            <label for="email">Username</label><br>
+            <input class="log_in_input" type="text" id="username" name="username" placeholder="username" autofocus>
             <br>
             <label for="password">Password</label><br>
             <input class="log_in_input" type="password" id="password" name="paswd" placeholder="password">
