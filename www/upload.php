@@ -6,6 +6,7 @@ $userid=$_GET['user_id'];
 
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];
+    $caption=htmlspecialchars($caption);
     if (!getimagesize($_FILES['imagefile']['tmp_name'])){
         echo "<br>Please choose a file or choose a file under 2MB.";
     } else {

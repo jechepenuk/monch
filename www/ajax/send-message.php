@@ -10,7 +10,8 @@ $name=$username.": ";
 $separator='%%%';
 
 if ($_POST['message']){
-    $message=$name.$_POST['message'].$separator;
+    $mess=htmlspecialchars($_POST['message']);
+    $message=$name.$mess.$separator;
 
     $result1=mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $me . "' and user2='" . $friend . "'");
     $result2 = mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $friend . "' and user2='" . $me . "'");

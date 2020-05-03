@@ -34,6 +34,7 @@ if (($_POST['comment'])){
     $row2 = mysqli_fetch_array($result2);
     $commenter=$row2['username'];
     $comment=$_POST['comment'];
+    $comment=htmlspecialchars($comment);
     $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
     $postinfo=mysqli_fetch_array($post);
     $currComments=$postinfo['comments'];
