@@ -7,7 +7,7 @@ $userid=$_GET['user_id'];
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];
     if (!getimagesize($_FILES['imagefile']['tmp_name'])){
-        echo "<br>Please choose a file.";
+        echo "<br>Please choose a file or choose a file under 2MB.";
     } else {
         $target_dir = "public/";
         $temp_name = $_FILES['imagefile']['tmp_name'];
@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
         $filename=$path['filename'];
         $ext=$path['extension'];
         $location=$target_dir.$filename.".".$ext;
+
         move_uploaded_file($temp_name,$location);
         $sql = "INSERT INTO posts (`caption`, `user_id`, `image`) VALUES ('".$caption."', '".$userid."','".$location."')";
         $r=mysqli_query($conn,$sql);
@@ -92,13 +93,15 @@ if (isset($_POST['search'])){
     <div class="center">
 <br>
 <br>
+<div class="cont">
+    <p class="center">-file size should not exceed 2MB-</p><br><br>
     <form method="post" action="" enctype="multipart/form-data">
-            <input type="text" name="caption" placeholder="say something...">
-            <input type="file" name="imagefile">
-            <input type="submit" name="submit" value="Upload">
+            <input class="log_in_input" type="text" name="caption" placeholder="adda a caption..."><br><br>
+            <input class="log_in_input" type="file" name="imagefile"><br><br>
+            <input class="selectButton" type="submit" name="submit" value="post">
         </form>
     </div>
-
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 

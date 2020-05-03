@@ -1,7 +1,6 @@
 <?php
 include_once "access-db.php";
 
-
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $myinfo=mysqli_fetch_array($me);
 

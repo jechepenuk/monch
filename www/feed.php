@@ -4,8 +4,44 @@ $message="";
 include_once "access-db.php";
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $myinfo=mysqli_fetch_array($me);
-$following=explode(",", $myinfo['following']);  
-$postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
+
+if (isset($_POST['like'])){
+    $postid=$_POST['postid'];
+    echo $postid;
+    $likedThings=$myinfo['likedposts'];
+    $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
+    $postinfo=mysqli_fetch_array($post);
+    $liked=explode(",", $likedThings);
+    $counts = array_count_values($liked);
+    $likes=$postinfo['likes'];
+    $count=$counts[$postid];
+    if (!in_array($postid, $liked) || $count % 2 == 0){
+        $likes=$likes+1;
+    }else{
+        $likes=$likes-1;    
+    }
+    $updateLikes=$likedThings . $postid . ",";
+    mysqli_query($conn,"UPDATE users SET likedposts='" . $updateLikes . "' WHERE user_id='" . $_GET['user_id'] . "'"); 
+    mysqli_query($conn,"UPDATE posts SET likes='" . $likes . "' WHERE id='" . $postid . "'"); 
+    // $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
+    // echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+}
+
+if (($_POST['comment'])){
+    $postid=$_POST['postid'];
+    $commenter=$_GET['user_id'];
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $commenter . "'");
+    $row2 = mysqli_fetch_array($result2);
+    $commenter=$row2['username'];
+    $comment=$_POST['comment'];
+    $post = mysqli_query($conn,"SELECT * FROM posts WHERE id='" . $postid . "'");
+    $postinfo=mysqli_fetch_array($post);
+    $currComments=$postinfo['comments'];
+    $updatedComments=$currComments . ',' . $commenter . ': ' . $comment;
+    mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "' WHERE id='" . $postid . "'"); 
+    $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+}
 
 if (isset($_POST['search'])){
     $username=$_POST['search'];
@@ -49,8 +85,11 @@ if (isset($_POST['search'])){
                         child=div.lastElementChild;
                     }
                     var total=this.responseText;
+                    console.log(total);
                     var arr=total.split("##");
+                    console.log(arr[0])
                     var arrLen=arr.length;
+                    // console.log(arrLen);
                     for (var i=0; i<arrLen-1; i++){
                         var post=arr[i].split("@@");
                         var br = document.createElement("br");
@@ -73,35 +112,37 @@ if (isset($_POST['search'])){
                         caption.className="center";
                         var ele=document.createTextNode(post[1]);
                         caption.appendChild(ele);  
-                        var form=document.createElement("form");
-                        form.className="center";
-                        form.method="post";
-                        form.action="";
-                        form.id="updatepost";
-                        form.onsubmit="sendFormData();return false;";
-                        form.enctype="multipart/form-data";
+                        var fo=document.createElement("form");
+                        fo.className="center";
+                        fo.method="post";
+                        fo.action="";
+                        fo.id="updatepost";
+                        // fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
                         comInput.className="log_in_input";
                         comInput.name="comment";
                         comInput.type="text";
+                        comInput.id="comm";
                         comInput.placeholder="say something...";
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
-                        hidden.value=post[0];
+                        var postid=post[0].split("\n");
+                        console.log(postid[1]);
+                        hidden.value=postid[1];
                         var likeInput=document.createElement("input");
                         likeInput.className="rate";
-                        likeInput.type="button";
+                        likeInput.type="submit";
                         likeInput.name="like";
                         likeInput.value=post[5];
                         likeInput.id="like";
-                        form.appendChild(comInput);
-                        form.appendChild(hidden);
-                        form.appendChild(likeInput);
+                        fo.appendChild(comInput);
+                        fo.appendChild(hidden);
+                        fo.appendChild(likeInput);
                         var com=document.createElement("p");
                         com.className="center";
-                        com.id="comment";
-                        com.name="comment";
+                        com.id="comm";
+                        com.name="comm";
                         var info=document.createTextNode(post[6]);
                         com.appendChild(info);
                         var d=document.getElementById("cont");
@@ -111,7 +152,7 @@ if (isset($_POST['search'])){
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
-                        d.appendChild(form);
+                        d.appendChild(fo);
                         d.appendChild(br4);
                         d.appendChild(com);
                         d.appendChild(br1);
@@ -177,7 +218,7 @@ if (isset($_POST['search'])){
                         form.method="post";
                         form.action="";
                         form.id="updatepost";
-                        form.onsubmit="sendFormData();return false;";
+                        form.onSubmit="sendFormData();return false;";
                         form.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
                         comInput.className="log_in_input";
@@ -190,7 +231,7 @@ if (isset($_POST['search'])){
                         hidden.value=post[0];
                         var likeInput=document.createElement("input");
                         likeInput.className="rate";
-                        likeInput.type="button";
+                        likeInput.type="submit";
                         likeInput.name="like";
                         likeInput.value=post[5];
                         likeInput.id="like";
@@ -234,6 +275,9 @@ if (isset($_POST['search'])){
         }
         refreshposts();
 
+        function test(){
+            alert("working");
+        }
         function sendFormData(){
             const formElement=document.getElementById("updatepost");
             const formData = new FormData(formElement);

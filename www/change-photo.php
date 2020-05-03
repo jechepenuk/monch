@@ -7,10 +7,16 @@ if (isset($_POST['submit'])) {
     if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
         echo "<br />Please Select An Image.";
     } else {
-        $image = $_FILES['imagefile']['tmp_name'];
+        $target_dir = "public/";
+        $temp_name = $_FILES['imagefile']['tmp_name'];
         $name = $_FILES['imagefile']['name'];
-        $image = base64_encode(file_get_contents(addslashes($image)));
-        mysqli_query($conn, "UPDATE users SET  user_image='" . $image . "' WHERE user_id='" . $userid . "'");
+        $path = pathinfo($name);
+        $filename=$path['filename'];
+        $ext=$path['extension'];
+        $location=$target_dir.$filename.".".$ext;
+        move_uploaded_file($temp_name,$location);
+
+        mysqli_query($conn, "UPDATE users SET  user_image='" . $location . "' WHERE user_id='" . $userid . "'");
 
     }
     $URL="http://localhost:8000/profile.php?user_id=" .$userid; 

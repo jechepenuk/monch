@@ -19,7 +19,7 @@ while ($singlePost=mysqli_fetch_array($postsresults)){
             $link="./friend-profile.php?user_id=".$_GET['user_id']. "&friend=" . $singlePost['user_id'];
         }
         if ($row['user_image']){
-            $userimg="public/user-default.jpg";
+            $userimg=$row['user_image'];
         }else{
             $userimg="public/user-default.jpg";
         }
