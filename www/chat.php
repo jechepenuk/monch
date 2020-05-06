@@ -2,6 +2,7 @@
 $message="";
 
 include_once 'access-db.php';
+$chatid=$_GET['chat_id'];
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['friend'] . "'");
 $row = mysqli_fetch_array($result);
 $friend=$row['username'];
@@ -38,7 +39,7 @@ if (isset($_POST['clear'])){
         $row=mysqli_fetch_array($result2);
         mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "', msgcount=0 WHERE id='" . $row['id'] . "'"); 
     }
-    $URL="http://localhost:8000/chat.php?user_id=".$_GET['user_id']."&friend=".$_GET['friend']; 
+    $URL="http://localhost:8000/chat.php?user_id=".$_GET['user_id']."&friend=".$_GET['friend']."&chat_id=".$chatid; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
 $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend']; 
@@ -81,7 +82,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                     }
                 }
             };
-            xmlhttp.open("GET", "ajax/refresh-chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>", true);
+            xmlhttp.open("GET", "ajax/refresh-chat.php?chat_id=<?php echo $chatid;?>", true);
             xmlhttp.send();
         }
 

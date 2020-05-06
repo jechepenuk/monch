@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-app: 3306
--- Generation Time: Apr 25, 2020 at 09:08 PM
+-- Generation Time: May 06, 2020 at 03:31 PM
 -- Server version: 5.7.29
 -- PHP Version: 7.4.5
 
@@ -24,6 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `user1` int(11) DEFAULT NULL,
+  `user2` int(11) DEFAULT NULL,
+  `chat` longtext,
+  `msgcount` int(11) NOT NULL DEFAULT '0',
+  `new` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `user1`, `user2`, `chat`, `msgcount`, `new`) VALUES
+(8, 1, 5, 'jane_doe: ok%%%jenniech: hi%%%jenniech: hi%%%jenniech: hi%%%', 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `numposts`
+--
+
+CREATE TABLE `numposts` (
+  `id` int(11) NOT NULL,
+  `num` int(11) NOT NULL DEFAULT '7'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `numposts`
+--
+
+INSERT INTO `numposts` (`id`, `num`) VALUES
+(1, 14);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posts`
 --
 
@@ -32,9 +72,29 @@ CREATE TABLE `posts` (
   `caption` varchar(250) NOT NULL,
   `user_id` int(11) NOT NULL,
   `image` varchar(50) NOT NULL,
-  `likes` int(11) NOT NULL,
-  `comments` text NOT NULL
+  `likes` int(11) NOT NULL DEFAULT '0',
+  `comments` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `caption`, `user_id`, `image`, `likes`, `comments`) VALUES
+(1, 'this is cool!', 1, 'public/pasta.jpg', 2, ''),
+(7, 'cooking :)', 3, 'public/NCI_Visuals_Food_Hot_Dog.jpg', 1, ''),
+(8, 'fooood', 2, 'public/mouse.jpg', 1, ''),
+(9, 'more food', 2, 'public/food-salad-healthy-lunch.jpg', 0, 'jane_doe: mmmm'),
+(10, 'mmm', 2, 'public/food-dinner-lunch-unhealthy-70497.jpg', 0, ''),
+(11, 'more food', 2, 'public/before.jpg', 1, 'jane_doe: Nice!'),
+(12, 'lunch!', 2, 'public/food-salad-healthy-lunch.jpg', 1, ''),
+(13, 'hey!', 6, 'public/top-view-photo-of-food-dessert-1099680.jpg', 0, ''),
+(14, 'PIZZA!', 6, 'public/SSP_3739_preview.jpeg.jpg', 1, ''),
+(15, 'burger night!', 6, 'public/food-dinner-lunch-unhealthy-70497.jpg', 1, ''),
+(16, 'yum! first post!', 5, 'public/pexels-photo-704569.jpeg', 1, 'jenniech: &lt;button&gt;hi&lt;/button&gt;'),
+(17, 'look at this spread!', 2, 'public/photo-1498837167922-ddd27525d352 (1).jpg', 0, 'jane_doe: nice!'),
+(18, 'dinner!', 5, 'public/photo-1521354414378-fcffad1d3d6a.jpg', 0, NULL),
+(19, 'love', 5, 'public/photo-1467453678174-768ec283a940.jpg', 1, 'jane_doe: awesome!');
 
 -- --------------------------------------------------------
 
@@ -46,22 +106,40 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `following` varchar(250) NOT NULL,
-  `user_image` longblob,
-  `blocked` varchar(250) NOT NULL
+  `password` varchar(250) NOT NULL,
+  `following` varchar(250) DEFAULT NULL,
+  `user_image` varchar(50) DEFAULT NULL,
+  `likedposts` text,
+  `convos` int(11) NOT NULL DEFAULT '0',
+  `newmsg` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `following`, `user_image`, `blocked`) VALUES
-(1, 'jane_doe', 'jenniech@buffalo.edu', 'Hello123!', '', NULL, '');
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `following`, `user_image`, `likedposts`, `convos`, `newmsg`) VALUES
+(1, 'jane_doe', 'jenniech@buffalo.edu', '$2y$09$vRWOVnHWckdf4jubLEbY9OWSRlGBXT5rDew0Y.0Hg73iR9nVlje6i', ',2,3,6,5', 'public/guyfieri.jpg', '8,8,8,8,8,8,8,8,8,8,8,8,8,8,13,13,9,9,15,1,1,15,15,1,1,8,8,8,11,14,17,17,19,', 1, 0),
+(2, 'fake_user', 'jechepenuk@gmail.com', '$2y$09$.2lzGXCwQwVIz8TMyI40DunuH0ORp5oxUsovclCzFrrwl84C4FTBi', ',1,3', 'public/intro-1573597941.jpg', NULL, 0, 0),
+(3, 'guy_fieri', 'gfieri@gmail.com', '$2y$09$5fPIoARbiJHT.9pb7evo.ugXbCfKvSYbPpMwnLrm5mi9fxWmWEg8y', NULL, NULL, NULL, 0, 0),
+(5, 'jenniech', 'jenniech@gmail.com', '$2y$09$XKO6i//VMHVjAq6.ePhSSuUaE9XpQxtJvVVqOYZe2XC.f7L8yoQSW', '1,1,1,1,1,1,2,2,2,1', 'public/79b4be6b0207b4c9d709f67f928fc436.jpg', '16,19,19,', 1, 0),
+(6, 'cardib', 'cardib@gmail.com', '$2y$09$v5JH8qYl1GAOuxhwozj2cO4Z6JUmyl53Efv2.EbzVahYS9eX2DCia', ',2,1', NULL, '1,1,1,', 0, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `numposts`
+--
+ALTER TABLE `numposts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `posts`
@@ -80,16 +158,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `numposts`
+--
+ALTER TABLE `numposts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

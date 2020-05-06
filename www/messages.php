@@ -83,16 +83,25 @@ if (isset($_POST['search'])){
             $result2=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $row['user2'] . "'");
             $user=mysqli_fetch_array($result2);
             $linkname=$user['username'];
-            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2'];
             $msgid=$row['id'];
-            echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
+            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2']."&chat_id=".$msgid;
+
+            if ($row['new']>0){
+                echo "<a class='proflink blink_me bold_me' href=".$link.">$linkname</a><br><br>";
+            }else{
+                echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
+            }
         }else{
             $result2=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $row['user1'] . "'");
             $user=mysqli_fetch_array($result2);
             $msgid=$row['id'];
             $linkname=$user['username'];
-            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user1'];
-            echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
+            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user1']."&chat_id=".$msgid;
+            if ($row['new']>0){
+                echo "<a class='proflink blink_me bold_me' href=".$link.">$linkname</a><br><br>";
+            }else{
+                echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
+            }
         }
     }
     ?>
