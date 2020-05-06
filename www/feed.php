@@ -36,33 +36,6 @@ if (isset($_POST['search'])){
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
-        function getmessages(){
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
-                    var div=document.getElementById("update");
-                    var child=div.lastElementChild;
-            
-                    while (child){
-                        div.removeChild(child);
-                        child=div.lastElementChild;
-                    }   
-                            
-                    var paragraph=document.createElement("a");
-                    paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
-                    paragraph.className="navlink blink_me bold_me";
-                    var el=document.createTextNode(this.responseText);
-                    paragraph.appendChild(el);
-                    div.appendChild(paragraph);
-                 
-                }
-            };
-            xmlhttp.open("GET", "ajax/message-notif.php?user_id=<?php echo $_GET['user_id'];?>", true);
-            xmlhttp.send();
-        }
-        getmessages();
-
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
@@ -75,7 +48,30 @@ if (isset($_POST['search'])){
                         child=div.lastElementChild;
                     }
                     var total=this.responseText;
-                    var arr=total.split("##");
+                    var msg=total.split("$$");
+                    if (msg.length>1){
+                        var div=document.getElementById("update");
+                        var child=div.lastElementChild;
+                        while (child){
+                            div.removeChild(child);
+                            child=div.lastElementChild;
+                        }   
+                        var paragraph=document.createElement("a");
+                        paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                        paragraph.className="navlink blink_me bold_me";
+                        var el=document.createTextNode(msg[0]);
+                        paragraph.appendChild(el);
+                        div.appendChild(paragraph);
+
+                    }
+                    var x;
+                    if (msg.length>1){
+                        x=msg[1];
+                    }else{
+                        x=msg;
+                    }
+                    var x = x.toString();
+                    var arr=x.split("##")
                     var arrLen=arr.length;
                     for (var i=0; i<arrLen-1; i++){
                         var post=arr[i].split("@@");
@@ -113,7 +109,7 @@ if (isset($_POST['search'])){
                         hidden.type="hidden";
                         hidden.name="postid";
                         var postid;
-                        if (i==0){
+                        if (i==0 && msg.length==1){
                             posts=post[0].split("\n");
                             postid=posts[1]
                             hidden.value=postid;
@@ -133,15 +129,7 @@ if (isset($_POST['search'])){
                         var hiddenlike=document.createElement("input");
                         hiddenlike.type="hidden";
                         hiddenlike.name="postid";
-                        var postid;
-                        if (i==0){
-                            posts=post[0].split("\n");
-                            postid=posts[1]
-                            hiddenlike.value=postid;
-                        }else{
-                            postid=post[0];
-                            hiddenlike.value=postid;  
-                        }
+     
                         var ident="updatepost" + postid;
                         f.id=ident;
                         f.onsubmit=sendFormDataLike;
@@ -179,7 +167,6 @@ if (isset($_POST['search'])){
             xmlhttp.open("GET", "ajax/load-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
             xmlhttp.send();
         }
-        getmessages();
         refreshposts();
 
         function refreshposts() {
@@ -194,7 +181,30 @@ if (isset($_POST['search'])){
                         child=div.lastElementChild;
                     }
                     var total=this.responseText;
-                    var arr=total.split("##");
+                    var msg=total.split("$$");
+                    if (msg.length>1){
+                        var div=document.getElementById("update");
+                        var child=div.lastElementChild;
+                        while (child){
+                            div.removeChild(child);
+                            child=div.lastElementChild;
+                        }   
+                        var paragraph=document.createElement("a");
+                        paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                        paragraph.className="navlink blink_me bold_me";
+                        var el=document.createTextNode(msg[0]);
+                        paragraph.appendChild(el);
+                        div.appendChild(paragraph);
+
+                    }
+                    var x;
+                    if (msg.length>1){
+                        x=msg[1];
+                    }else{
+                        x=msg;
+                    }
+                    var x = x.toString();
+                    var arr=x.split("##")
                     var arrLen=arr.length;
                     for (var i=0; i<arrLen-1; i++){
                         var post=arr[i].split("@@");
@@ -232,7 +242,7 @@ if (isset($_POST['search'])){
                         hidden.type="hidden";
                         hidden.name="postid";
                         var postid;
-                        if (i==0){
+                        if (i==0 && msg.length==1){
                             posts=post[0].split("\n");
                             postid=posts[1]
                             hidden.value=postid;
@@ -252,15 +262,7 @@ if (isset($_POST['search'])){
                         var hiddenlike=document.createElement("input");
                         hiddenlike.type="hidden";
                         hiddenlike.name="postid";
-                        var postid;
-                        if (i==0){
-                            posts=post[0].split("\n");
-                            postid=posts[1]
-                            hiddenlike.value=postid;
-                        }else{
-                            postid=post[0];
-                            hiddenlike.value=postid;  
-                        }
+     
                         var ident="updatepost" + postid;
                         f.id=ident;
                         f.onsubmit=sendFormDataLike;

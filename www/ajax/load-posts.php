@@ -7,7 +7,12 @@ $myinfo=mysqli_fetch_array($me);
 $following=explode(",", $myinfo['following']);  
 $counts = array_count_values($following);
 $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
-$retstring="";
+
+if($myinfo['newmsg']!=0){
+    $retstring="new message!$$";
+}else{
+    $retstring="";
+}
 while ($singlePost=mysqli_fetch_array($postsresults)){ 
     $count=$counts[$singlePost['user_id']];
     if ($count % 2 == 1 || $singlePost['user_id']==$_GET['user_id'] ){

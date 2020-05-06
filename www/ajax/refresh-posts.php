@@ -11,15 +11,22 @@ $numres=mysqli_fetch_array($num);
 $count=$numres['num'];
 $newcount=mysqli_num_rows($postsresults);
 $counts = array_count_values($following);
-
+$newmsg=$myinfo['newmsg'];
+$updatemsg=$newmsg;
 //long poll here
-while($newcount==$count){
+while($newcount==$count && $newmsg==$updatemsg){
     $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
     $newcount=mysqli_num_rows($postsresults);
+    $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+    $myinfo=mysqli_fetch_array($me);
+    $updatemsg=$myinfo['newmsg'];
     sleep(2);
 }
-
-$retstring="";
+if($myinfo['newmsg']!=0){
+    $retstring="new message!$$";
+}else{
+    $retstring="";
+}
 while ($singlePost=mysqli_fetch_array($postsresults)){ 
     $count1=$counts[$singlePost['user_id']];
     if ($count1 % 2 == 1  || $singlePost['user_id']==$_GET['user_id'] ){
