@@ -101,7 +101,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 }
     </script>
 </head>
-<body class="main-container" onload="setInterval(refreshchat,500)">
+<body class="main-container" onload="setInterval(refreshchat,1500)">
 <div class="innerwrapper">
 
     <div class="header">

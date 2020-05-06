@@ -31,9 +31,10 @@ if ($_POST['message']){
         mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "', msgcount='" .$newcount. "' WHERE user2='" . $me . "' and user1='" . $friend . "'"); 
 
     }else{
+        $one=1;
         $sql = "INSERT INTO messages (user1, user2, chat, msgcount) VALUES (?,?,?,?)";
         $stmt= $conn->prepare($sql);
-        $stmt->bind_param("iis", $me, $friend, $message, 1);
+        $stmt->bind_param("iisi", $me, $friend, $message, $one);
         $stmt->execute();
 
     }

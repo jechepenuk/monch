@@ -1,6 +1,11 @@
 <?php
 
 include_once "access-db.php";
+//remove the notification here!
+$me=$_GET['user_id'];
+$r=mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $me . "' or user2='" . $me . "'");
+$cc=mysqli_num_rows($r);
+mysqli_query($conn,"UPDATE users SET convos='" . $cc . "' WHERE user_id='" . $me . "'"); 
 
 $result = mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $_GET['user_id'] . "' or user2='" .$_GET['user_id'] . "'");
 if (isset($_POST['search'])){
