@@ -37,8 +37,31 @@ if (isset($_POST['search'])){
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
         function getmessages(){
-
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    var div=document.getElementById("update");
+                    var child=div.lastElementChild;
+            
+                    while (child){
+                        div.removeChild(child);
+                        child=div.lastElementChild;
+                    }   
+                            
+                    var paragraph=document.createElement("a");
+                    paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                    paragraph.className="navlink blink_me bold_me";
+                    var el=document.createTextNode(this.responseText);
+                    paragraph.appendChild(el);
+                    div.appendChild(paragraph);
+                 
+                }
+            };
+            xmlhttp.open("GET", "ajax/message-notif.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.send();
         }
+        getmessages();
 
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
@@ -156,6 +179,7 @@ if (isset($_POST['search'])){
             xmlhttp.open("GET", "ajax/load-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
             xmlhttp.send();
         }
+        getmessages();
         refreshposts();
 
         function refreshposts() {
@@ -277,7 +301,6 @@ if (isset($_POST['search'])){
         refreshposts();
 
         function sendFormDataComment(elem){
-            // console.log(elem.target.id);
             event.preventDefault();
             if(document.getElementById(elem.target.id)){
                 const formElement=document.getElementById(elem.target.id);
@@ -314,13 +337,13 @@ if (isset($_POST['search'])){
     </script>
 </head>
 
-<body onload=loadposts()>
+<body onload=loadposts() >
     <div class="innerwrapper">
     <div class="header">
 
-        <div class="menu_welcomePage" onload="getmessages()">
+        <div class="menu_welcomePage">
             <ul>
-                <div class="update"></div>
+                <li id="update"></li>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
@@ -334,6 +357,7 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+
     <hr class="hr-navbar">
     <div class="message">
     

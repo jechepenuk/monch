@@ -402,3 +402,17 @@ input[type="submit"]:hover {
     background-color: white;
     color: black; 
   }
+  .blink_me {
+    animation: blinker 1s linear infinite;
+    font-weight: bolder;
+    color: rgb(255, 0, 106);
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+  .bold_me{
+      font-weight: bolder;
+  }
