@@ -21,7 +21,7 @@
                 <!-- the line of code commented below is important when we upload the work on a server. for now, i'm using an alternative below -->
                 <!-- <li><a href="javascript:loadPage('./login.php')">login</a> </li> -->
                 <li><a class="navlink" href="login.php">login</a> </li>
-                <li><a class="navlink" href="register.php">create account</a></li>
+                <li><a class="navlink" href="register.php">register</a></li>
 
             </ul>
         </div>
@@ -34,6 +34,8 @@
     <hr class="hr-navbar">
 
     <h1 class="welcome-page-title">Welcome to Community Foods</h1>
+    <br><br>
+    <h2 class="center">Share your food with us!</h2>
 
 
     <br><br><br><br><br><br><br><br><br>

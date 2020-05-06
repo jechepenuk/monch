@@ -10,6 +10,7 @@ $num=mysqli_query($conn,"SELECT * FROM numposts WHERE id=1");
 $numres=mysqli_fetch_array($num);
 $count=$numres['num'];
 $newcount=mysqli_num_rows($postsresults);
+$counts = array_count_values($following);
 
 //long poll here
 while($newcount==$count){
@@ -20,7 +21,8 @@ while($newcount==$count){
 
 $retstring="";
 while ($singlePost=mysqli_fetch_array($postsresults)){ 
-    if (in_array($singlePost['user_id'], $following) || $singlePost['user_id']==$_GET['user_id'] ){
+    $count1=$counts[$singlePost['user_id']];
+    if ($count1 % 2 == 1  || $singlePost['user_id']==$_GET['user_id'] ){
         $usr = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $singlePost['user_id'] . "'");
         $row = mysqli_fetch_array($usr);
         $user=$row['username'];

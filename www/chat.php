@@ -36,7 +36,7 @@ if (isset($_POST['clear'])){
     }
     else if(mysqli_num_rows($result2)>0){
         $row=mysqli_fetch_array($result2);
-        mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "' WHERE id='" . $row['id'] . "'"); 
+        mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "', msgcount=0 WHERE id='" . $row['id'] . "'"); 
     }
     $URL="http://localhost:8000/chat.php?user_id=".$_GET['user_id']."&friend=".$_GET['friend']; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';

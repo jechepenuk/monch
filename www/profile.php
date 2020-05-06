@@ -7,6 +7,8 @@ $myinfo=mysqli_fetch_array($me);
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $row = mysqli_fetch_array($result);
 $result2 = mysqli_query($conn,"SELECT * FROM posts WHERE user_id='" . $_GET['user_id'] . "' ORDER BY id DESC ");
+$following=explode(",", $myinfo['following']);  
+
 
 if (isset($_POST['search'])){
     $username=$_POST['search'];
@@ -320,9 +322,6 @@ if (isset($_POST['search'])){
     <div class="header">
         <div class="menu_welcomePage">
             <ul>
-
-                <!-- the line of code commented below is important when we upload the work on a server. for now, i'm using an alternative below -->
-                <!-- <li><a href="javascript:loadPage('./login.html')">login</a> </li> -->
                 <li><a class="navlink" href="./feed.php?user_id=<?php echo $row['user_id']; ?>">my feed</a> </li>  
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>           
                 <li><a class="navlink" href="./index.php">logout</a> </li>
@@ -349,7 +348,12 @@ if (isset($_POST['search'])){
     }
     ?>    
     <br>
-    <button class="selectButtonNarrow" onclick="window.location.href = './change-photo.php?user_id=<?php echo $_GET['user_id']; ?>';">change</button><br><br>
+    <br>
+    <div class="cc">
+
+    <button class="dropbtn2" onclick="window.location.href = './change-photo.php?user_id=<?php echo $_GET['user_id']; ?>';">edit photo</button><br><br>
+    </div>
+
     <hr class='navbar'><br><br>
 
     <div class="cont" id="cont">

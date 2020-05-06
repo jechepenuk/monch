@@ -2,6 +2,7 @@
 $message="";
 
 include_once "access-db.php";
+$userid=$_GET['user_id'];
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $myinfo=mysqli_fetch_array($me);
 
@@ -35,6 +36,10 @@ if (isset($_POST['search'])){
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
+        function getmessages(){
+
+        }
+
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
@@ -313,8 +318,9 @@ if (isset($_POST['search'])){
     <div class="innerwrapper">
     <div class="header">
 
-        <div class="menu_welcomePage">
+        <div class="menu_welcomePage" onload="getmessages()">
             <ul>
+                <div class="update"></div>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
@@ -340,8 +346,19 @@ if (isset($_POST['search'])){
     <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">add post</button><br><br>
     <hr class='navbar'><br><br>
 
+    <?php if(!$myinfo['following']){
+        echo "<h3 class='center'>You are not following anyone yet!</h3><br>";
+        echo "<h3 class='center'>Try following one of these profiles to get you started:</h3><br>";
+        echo "<a class='proflink' href='friend-profile.php?user_id=$userid&friend=1'>jane_doe</a><br>";
+        echo "<a class='proflink' href='friend-profile.php?user_id=$userid&friend=2'>fake_user</a><br>";
+        echo "<a class='proflink' href='friend-profile.php?user_id=$userid&friend=3'>guy_fieri</a><br><br><hr class='navbar'><br><br>";
+
+    }
+?>
     <div class="cont" id="cont">
     </div>
+
+    
 
 </body>
 

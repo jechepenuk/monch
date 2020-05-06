@@ -5,10 +5,12 @@ include_once "access-db.php";
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $myinfo=mysqli_fetch_array($me);
 $following=explode(",", $myinfo['following']);  
+$counts = array_count_values($following);
 $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
 $retstring="";
 while ($singlePost=mysqli_fetch_array($postsresults)){ 
-    if (in_array($singlePost['user_id'], $following) || $singlePost['user_id']==$_GET['user_id'] ){
+    $count=$counts[$singlePost['user_id']];
+    if ($count % 2 == 1 || $singlePost['user_id']==$_GET['user_id'] ){
         $usr = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $singlePost['user_id'] . "'");
         $row = mysqli_fetch_array($usr);
         $user=$row['username'];

@@ -62,6 +62,9 @@ if (isset($_POST['search'])){
     <br> 
     <br>
     <?php 
+    if (mysqli_num_rows($result)==0){
+        echo "<p class='center'>You have no conversations yet. Search for a profile to start one.</p>";
+    }
     while ($row=mysqli_fetch_array($result)){
         if ($row['user1']==$_GET['user_id']){
             $result2=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $row['user2'] . "'");

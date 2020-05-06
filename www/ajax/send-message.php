@@ -20,18 +20,20 @@ if ($_POST['message']){
         $row=mysqli_fetch_array($result1);
         $chat= $row['chat'];
         $chat.=$message;
-        mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "' WHERE user1='" . $me . "' and user2='" . $friend . "'"); 
+        $newcount=$row['msgcount'] +1;
+        mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "', msgcount='" .$newcount. "' WHERE user1='" . $me . "' and user2='" . $friend . "'"); 
 
     }else if (mysqli_num_rows($result2)>0){
         $row=mysqli_fetch_array($result2);
         $chat= $row['chat'];
         $chat.=$message;
-        mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "' WHERE user2='" . $me . "' and user1='" . $friend . "'"); 
+        $newcount=$row['msgcount'] +1;
+        mysqli_query($conn,"UPDATE messages SET chat='" . $chat . "', msgcount='" .$newcount. "' WHERE user2='" . $me . "' and user1='" . $friend . "'"); 
 
     }else{
-        $sql = "INSERT INTO messages (user1, user2, chat) VALUES (?,?,?)";
+        $sql = "INSERT INTO messages (user1, user2, chat, msgcount) VALUES (?,?,?,?)";
         $stmt= $conn->prepare($sql);
-        $stmt->bind_param("iis", $me, $friend, $message);
+        $stmt->bind_param("iis", $me, $friend, $message, 1);
         $stmt->execute();
 
     }

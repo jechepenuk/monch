@@ -39,7 +39,7 @@ if(count($_POST)>0) {
     <div class="header">
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="./register.php">create account</a> </li>
+                <li><a class="navlink" href="./register.php">register</a> </li>
                 <li><a class="navlink" href="./index.php">home</a> </li>
             </ul>
         </div>

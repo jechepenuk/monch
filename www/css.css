@@ -211,7 +211,7 @@ input[type="submit"]:hover {
 }
 
 .message {
-    color: white;
+    color: rgb(128, 50, 50);
     font-size: larger;
 }
 
@@ -338,3 +338,67 @@ input[type="submit"]:hover {
 .linky{
     text-decoration: none;
 }
+.dropbtn2 {
+    width: 100px;
+    background-color: black;
+    color: white;
+    padding: 2px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .cc{
+      text-align: center;
+  }
+  .cont2{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content2 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;    
+
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content2 a:hover {
+      background-color: #f1f1f1;}
+      /* margin-left: auto;
+      margin-right: auto;
+      display: block;
+    } */
+  
+  /* Show the dropdown menu on hover */
+  .cont2:hover .dropdown-content2 {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .cont2:hover .dropbtn2 {
+    background-color: white;
+    color: black;
+  }
+  .dropbtn2:hover{
+    background-color: white;
+    color: black; 
+  }
