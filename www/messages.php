@@ -3,6 +3,14 @@
 include_once "access-db.php";
 //remove the notification here!
 $me=$_GET['user_id'];
+$myf=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $me ."'");
+$myinfo=mysqli_fetch_array($myf);
+if ($myinfo['newmsg']>0){
+    mysqli_query($conn,"UPDATE users SET newmsg=0 WHERE user_id='" . $me . "'"); 
+    $URL="http://localhost:8000/messages.php?user_id=".$_GET['user_id']; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+}
+
 $r=mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $me . "' or user2='" . $me . "'");
 $cc=mysqli_num_rows($r);
 mysqli_query($conn,"UPDATE users SET convos='" . $cc . "' WHERE user_id='" . $me . "'"); 
@@ -76,10 +84,12 @@ if (isset($_POST['search'])){
             $user=mysqli_fetch_array($result2);
             $linkname=$user['username'];
             $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2'];
+            $msgid=$row['id'];
             echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
         }else{
             $result2=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $row['user1'] . "'");
             $user=mysqli_fetch_array($result2);
+            $msgid=$row['id'];
             $linkname=$user['username'];
             $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user1'];
             echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
