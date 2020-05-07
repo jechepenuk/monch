@@ -109,7 +109,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
@@ -119,7 +118,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
         </div>
 
     </div>

@@ -55,7 +55,6 @@ if (isset($_POST['search'])){
         <div class="menu_welcomePage">
             <ul>
 
-                <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
@@ -65,7 +64,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
         </div>
 
     </div>
@@ -77,7 +76,7 @@ if (isset($_POST['search'])){
     <?php 
     if (mysqli_num_rows($result)==0){
         echo "<p class='center'>You have no conversations yet. Search for a profile to start one.</p>";
-    }
+    }else{
     while ($row=mysqli_fetch_array($result)){
         if ($row['user1']==$_GET['user_id']){
             $result2=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $row['user2'] . "'");
@@ -104,6 +103,7 @@ if (isset($_POST['search'])){
             }
         }
     }
+}
     ?>
     </div>
 

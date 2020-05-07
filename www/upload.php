@@ -67,7 +67,6 @@ if (isset($_POST['search'])){
 
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="feed.php?user_id=<?php echo $userid;?>">feed</a> </li>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="profile.php?user_id=<?php echo $userid;?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
@@ -78,7 +77,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
         </div>
 
     </div>

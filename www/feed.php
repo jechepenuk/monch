@@ -32,6 +32,7 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
+    <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <title>CF</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -339,7 +340,7 @@ if (isset($_POST['search'])){
     </script>
 </head>
 
-<body onload=loadposts() >
+<body onload=loadposts() class="main-container" >
     <div class="innerwrapper">
     <div class="header">
 
@@ -355,7 +356,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id'];?>">Community Foods</a> </h2>
         </div>
 
     </div>
