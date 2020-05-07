@@ -350,7 +350,7 @@ if (isset($_POST['search'])){
     }
     ?>    
     <br>
-    <br>
+    
     <div class="cc">
 
     <button class="dropbtn2" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>';">new post</button><br><br>

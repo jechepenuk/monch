@@ -5,11 +5,6 @@ include_once "access-db.php";
 $me=$_GET['user_id'];
 $myf=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $me ."'");
 $myinfo=mysqli_fetch_array($myf);
-if ($myinfo['newmsg']>0){
-    mysqli_query($conn,"UPDATE users SET newmsg=0 WHERE user_id='" . $me . "'"); 
-    $URL="http://localhost:8000/messages.php?user_id=".$_GET['user_id']; 
-    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
-}
 
 $r=mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $me . "' or user2='" . $me . "'");
 $cc=mysqli_num_rows($r);
@@ -74,6 +69,8 @@ if (isset($_POST['search'])){
     <h1 class="welcome-page-title">Your Chats</h1>
     <br> 
     <br>
+    <div class="cont">
+
     <?php 
     if (mysqli_num_rows($result)==0){
         echo "<p class='center'>You have no conversations yet. Search for a profile to start one.</p>";
@@ -85,11 +82,10 @@ if (isset($_POST['search'])){
             $linkname=$user['username'];
             $msgid=$row['id'];
             $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2']."&chat_id=".$msgid;
-
-            if ($row['new']>0){
-                echo "<a class='proflink blink_me bold_me' href=".$link.">$linkname</a><br><br>";
+            if ($myinfo['newmsg']==$row['user2']){
+                echo "<a class='chatlink blink_me bold_me' href=".$link.">$linkname</a><br><br>";
             }else{
-                echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
+                echo "<a class='chatlink' href=".$link.">$linkname</a><br><br>";
             }
         }else{
             $result2=mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $row['user1'] . "'");
@@ -97,10 +93,10 @@ if (isset($_POST['search'])){
             $msgid=$row['id'];
             $linkname=$user['username'];
             $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user1']."&chat_id=".$msgid;
-            if ($row['new']>0){
-                echo "<a class='proflink blink_me bold_me' href=".$link.">$linkname</a><br><br>";
+            if($myinfo['newmsg']==$row['user1']){
+                echo "<a class='chatlink blink_me bold_me' href=".$link.">$linkname</a><br><br>";
             }else{
-                echo "<a class='proflink' href=".$link.">$linkname</a><br><br>";
+                echo "<a class='chatlink' href=".$link.">$linkname</a><br><br>";
             }
         }
     }

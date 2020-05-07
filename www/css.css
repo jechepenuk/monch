@@ -2,9 +2,9 @@
     --teal: rgb(183, 202, 193);
 }
 body {
-    min-height: 1000px;
+    /* min-height: auto; */
     background-color:white;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 .header{
     background-color: white;
@@ -23,8 +23,8 @@ body {
     font-weight: 600;
 }
 .innerwrapper {
+    min-height: 1000px;
     width: 100%;
-    min-height: 900px;
     background: linear-gradient( rgba(255, 255, 255, 0.774), rgba(255, 255, 255, 0.781)), url(public/leaf-pattern.jpg);
     color:black;
     margin-left: auto;
@@ -46,18 +46,7 @@ body {
     width: 100%;
     height: 350px;
 }
-.navbar{
-    border-top: 2px solid black;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.navbar2{
-    border-top: 2px solid black;
-    width: 120%;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .profilePicture{
     width:200px;
     height:200px;
@@ -66,7 +55,7 @@ body {
     display:block;
     margin-left: auto;
     margin-right: auto;
-    border: 5px solid  rgb(180, 100, 100);
+    border: none;
 }
 
 .welcome-page-title {
@@ -74,10 +63,6 @@ body {
     margin: auto;
     padding-top: 120px;
     font-family: 'Rubik', sans-serif;
-}
-
-hr.hr-navbar {
-    border-top: 2px solid black;
 }
 
 .bottompad{
@@ -92,7 +77,7 @@ hr.hr-navbar {
 
 .welcome-page-buttons:hover, .aboutButton:hover {
     background-color: black;
-    color: rgb(180, 100, 100);
+    color: rgb(107, 141, 124);
 }
 .searchform{
     width: 80%;
@@ -101,7 +86,7 @@ hr.hr-navbar {
 .navlink:hover,
 .dropbtn:hover,
 .linky:hover {
-    color: rgb(180, 100, 100);
+    color: rgb(107, 141, 124);
 }
 
 .logo a {
@@ -113,8 +98,7 @@ hr.hr-navbar {
 }
 
 .logo a:hover {
-    color: rgb(180, 100, 100);
-}
+    color: rgb(107, 141, 124);}
 .menu_welcomePage {
     font-family: "Nunito", sans-serif;
     float: right;
@@ -138,20 +122,7 @@ ul li a {
 ul li a:hover {
     text-decoration: underline;
 }
-.selectButton-wide {
-    width: 30%;
-    margin-top: 2%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: black;
-    cursor: pointer;
-    border: none;
-    color: white;
-}
+
 .selectButtonNarrow{
     width: 15%;
     margin-top: 2%;
@@ -161,14 +132,12 @@ ul li a:hover {
     border-radius: 8px;
     padding: 5px;
     font-size: 16px;
-    background-color: black;
+    background-color: rgb(142, 190, 166);
     cursor: pointer;
     border: none;
-    color: white;
+    color: black;
 }
 
-
-/*-------------------- styling for the tutor signup page */
 
 .log_in_input,
 .sign_up_input {
@@ -194,7 +163,7 @@ ul li a:hover {
 }
 
 input[type="submit"]:hover {
-    background-color: rgb(180, 100, 100);
+    background-color: rgb(107, 141, 124);
     color: black;
 }
 
@@ -203,22 +172,28 @@ input[type="submit"]:hover {
     margin-left: 20%;
     margin-right: 20%;
 }
+.logsign{
+    padding-top: 200px;
+}
 
 #tutor_signup_submit,
 #log_in_button {
     display: inline-block;
     border: 0px solid #ccc;
     margin-top: 10px;
-    background-color: black;
-    color: white;
+    background-color: rgb(142, 190, 166);
+    color: black;
+    border: none;
     width: 100%;
-    padding: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: large ;
 }
 
 #tutor_signup_submit:hover,
 #log_in_button:hover {
-    background-color: rgb(180, 100, 100);
-    color: black;
+    background-color: rgb(107, 141, 124);
+    color: black; 
 }
 
 #forgot_link_id {
@@ -243,29 +218,12 @@ input[type="submit"]:hover {
     border-radius: 8px;
     padding: 12px;
     font-size: 20px;
-    background-color: black;
+    background-color: rgb(142, 190, 166);
     cursor: pointer;
     border: none;
-    color: white;  
+    color: black;  
 }
-.selectButtonWhite{
-    width: 15%;
-    margin-top: 2%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: rgb(180, 100, 100);
-    cursor: pointer;
-    border: none;
-    color: black;
-}
-.selectButtonWhite:hover {
-    background-color:black;
-    color: white;
-}
+
 .selectButton {
     width: 30%;
     margin-top: 2%;
@@ -275,16 +233,16 @@ input[type="submit"]:hover {
     border-radius: 8px;
     padding: 5px;
     font-size: 16px;
-    background-color: black;
+    background-color: rgb(142, 190, 166);;
     cursor: pointer;
     border: none;
-    color: white;
+    color: black;
 }
 .selectButtonNarrow:hover,
 .selectButton:hover,
 .calendarView:hover,
 .selectButton2:hover, .big:hover {
-    background-color: rgb(180, 100, 100);
+    background-color: rgb(107, 141, 124);
     color: black;
 }
 
@@ -296,9 +254,17 @@ input[type="submit"]:hover {
     display:block;
     margin-left: auto;
     margin-right: auto;
-    border: 3px solid  rgb(180, 100, 100);
+    border: 2px lightslategray;
 }
+.chatlink{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+}
+.chatlink:hover{
+    color: rgb(107, 141, 124);
 
+}
 .center {
     margin: 0 auto;
     text-align: center;
@@ -320,14 +286,14 @@ input[type="submit"]:hover {
     border-radius: 8px;
     padding: 2px;
     font-size: 13px;
-    background-color: black;
+    background-color: rgb(142, 190, 166);
     cursor: pointer;
     border: none;
-    color: white;
+    color: black;
 }
 .rate:hover{
+    background-color: rgb(107, 141, 124);
     color: black;
-    background-color: rgb(180, 100, 100);
 }
 
 .inline{
@@ -343,7 +309,7 @@ input[type="submit"]:hover {
     font-weight: bold;
 }
 .ip{
-    width: 30%;
+    width: 50%;
     padding: 8px;
     margin: 8px 0;
     display: inline-block;
@@ -361,8 +327,8 @@ input[type="submit"]:hover {
 }
 .dropbtn2 {
     width: 100px;
-    background-color: black;
-    color: white;
+    background-color: rgb(142, 190, 166);
+    color: black;
     padding: 2px;
     font-size: 16px;
     border-radius: 8px;
@@ -420,8 +386,8 @@ input[type="submit"]:hover {
     color: black;
   }
   .dropbtn2:hover{
-    background-color: white;
-    color: black; 
+    background-color: rgb(107, 141, 124);
+    color: black;
   }
   .blink_me {
     animation: blinker 1s linear infinite;
@@ -441,5 +407,11 @@ input[type="submit"]:hover {
   @media screen and (max-width: 900px){
     .cont{
         width: 90%;
+    }
+    .big{
+        width: 80%;
+    }
+    .ip{
+        width: 80%;
     }
   }

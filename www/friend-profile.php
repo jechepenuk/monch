@@ -397,7 +397,7 @@ if (isset($_POST['search'])){
     if (!in_array($_GET['friend'], $followarray) || $count % 2 == 0){
         echo '<form method="post" action=""><input type="submit" class="selectButtonNarrow" name="follow" value="follow"></form><br>';
     }else{
-        echo '<form method="post" action=""><input type="submit" class="selectButtonWhite" name="unfollow" value="unfollow"><br>';
+        echo '<form method="post" action=""><input type="submit" class="selectButtonNarrow" name="unfollow" value="unfollow">';
         echo '<input type="submit" class="selectButtonNarrow" name="message" value="message"></form><br>';
     }
     ?>
