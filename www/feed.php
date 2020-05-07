@@ -1,9 +1,10 @@
 <?php
+session_start(); 
 $message="";
-
+echo "The user id is " . $_SESSION["uid"].
 include_once "access-db.php";
-$userid=$_GET['user_id'];
-$me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+$userid=$_SESSION["uid"];
+$me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_SESSION["uid"] . "'");
 $myinfo=mysqli_fetch_array($me);
 
 if (isset($_POST['search'])){
@@ -57,7 +58,7 @@ if (isset($_POST['search'])){
                             child=div.lastElementChild;
                         }   
                         var paragraph=document.createElement("a");
-                        paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                        paragraph.href="./messages.php?user_id=<?php echo $$_SESSION["uid"];?>";
                         paragraph.className="navlink blink_me bold_me";
                         var el=document.createTextNode(msg[0]);
                         paragraph.appendChild(el);
@@ -164,7 +165,7 @@ if (isset($_POST['search'])){
                     }
                 }
             };
-            xmlhttp.open("GET", "ajax/load-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.open("GET", "ajax/load-posts.php?user_id=<?php echo $_SESSION["uid"];?>", true);
             xmlhttp.send();
         }
         refreshposts();
@@ -190,7 +191,7 @@ if (isset($_POST['search'])){
                             child=div.lastElementChild;
                         }   
                         var paragraph=document.createElement("a");
-                        paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                        paragraph.href="./messages.php?user_id=<?php echo $_SESSION["uid"];?>";
                         paragraph.className="navlink blink_me bold_me";
                         var el=document.createTextNode(msg[0]);
                         paragraph.appendChild(el);
@@ -297,7 +298,7 @@ if (isset($_POST['search'])){
                     }
                 }
             };
-            xmlhttp.open("GET", "ajax/refresh-posts.php?user_id=<?php echo $_GET['user_id'];?>", true);
+            xmlhttp.open("GET", "ajax/refresh-posts.php?user_id=<?php echo $_SESSION["uid"];?>", true);
             xmlhttp.send();
         }
         refreshposts();
@@ -315,7 +316,7 @@ if (isset($_POST['search'])){
                         loadposts();
                     }
                 };
-                request.open("POST", "ajax/update-post-comment.php?user_id=<?php echo $_GET['user_id'];?>");
+                request.open("POST", "ajax/update-post-comment.php?user_id=<?php echo $_SESSION["uid"];?>");
                 request.send(formData);
             }
 
@@ -333,7 +334,7 @@ if (isset($_POST['search'])){
                     loadposts();
                 }
             };
-            request.open("POST", "ajax/update-post-like.php?user_id=<?php echo $_GET['user_id'];?>");
+            request.open("POST", "ajax/update-post-like.php?user_id=<?php echo $_SESSION["uid"];?>");
             request.send(formData);
         }
     </script>
@@ -346,8 +347,8 @@ if (isset($_POST['search'])){
         <div class="menu_welcomePage">
             <ul>
                 <li id="update"></li>
-                <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
-                <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
+                <li><a class="navlink" href="./messages.php?user_id=<?php echo $_SESSION["uid"];?>">messages</a> </li>
+                <li><a class="navlink" href="./profile.php?user_id=<?php echo $_SESSION["uid"];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
 
@@ -369,7 +370,7 @@ if (isset($_POST['search'])){
     </div> 
     <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?>.</h1>
 
-    <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">add post</button><br><br>
+    <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_SESSION['uid']; ?>'">add post</button><br><br>
     <hr class='navbar'><br><br>
 
     <?php if(!$myinfo['following']){

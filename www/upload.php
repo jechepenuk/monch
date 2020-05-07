@@ -1,8 +1,9 @@
 <?php
+session_start();
 $message="";
 
 include_once 'access-db.php';
-$userid=$_GET['user_id'];
+$userid=$_SESSION["uid"];
 
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];

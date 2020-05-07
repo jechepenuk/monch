@@ -1,3 +1,13 @@
+<?php
+if(isset($_SESSION["uid"])) {
+    // remove all session variables
+    session_unset();
+
+    // destroy the session
+    session_destroy();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,4 +1,13 @@
 <?php
+
+if(isset($_SESSION["uid"])) {
+    // remove all session variables
+    session_unset();
+
+    // destroy the session
+    session_destroy();
+}
+session_start(); 
 $message="";
 include_once 'access-db.php';
 if(count($_POST)>0) {
@@ -11,12 +20,12 @@ if(count($_POST)>0) {
         $row = mysqli_fetch_array($result);
         if (password_verify($pass,$row['password'])){
             $var1=$row['user_id'];
-            $URL="http://localhost:8000/feed.php?user_id=" .$var1; 
+            $_SESSION["uid"] = $row['user_id'];
+            $URL="http://localhost:8000/feed.php?user_id=" .$_SESSION["uid"]; 
             echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
         }else{
             $message = "Invalid username or password!";
         }
-
 	}
 }
 ?>
