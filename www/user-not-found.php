@@ -32,7 +32,9 @@ if (isset($_POST['search'])){
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>CF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+
+    <title>monch not found</title>
 </head>
 <body class="main-container">
 <div class="innerwrapper">
@@ -50,7 +52,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>

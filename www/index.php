@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
+    <title>monch home</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="main-container">
@@ -27,15 +29,17 @@
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./index.php">monch</a> </h2>
         </div>
 
     </div>
     <hr class="hr-navbar">
 
-    <h1 class="welcome-page-title">Welcome to Community Foods</h1>
+    <h1 class="welcome-page-title main">welcome to monch</h1>
     <br><br>
-    <h2 class="center">Share your food with us!</h2>
+    <h2 class="newheader">a destination for every food lover...</h2><br>
+    <h2 class="newheader">share your food with us!</h2>
+
 
 
     <br><br><br><br><br><br><br><br><br>

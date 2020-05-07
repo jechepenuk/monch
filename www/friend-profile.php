@@ -70,10 +70,12 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
+    <title>monch profile</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+
     <script>
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
@@ -363,7 +365,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>

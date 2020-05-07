@@ -55,7 +55,9 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     <link rel="stylesheet" type="text/css" href="css.css" />
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>CF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+
+    <title>monch chat</title>
     <script>
         function refreshchat() {
             var xmlhttp = new XMLHttpRequest();
@@ -74,6 +76,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                         var arrLen=arr.length;
                         for (var i=arrLen-1; i>=0; i--){
                             var paragraph=document.createElement("p");
+                            paragraph.className="messagetext";
                             var el=document.createTextNode(arr[i]);
                             paragraph.appendChild(el);
                             var d=document.getElementById("cont");
@@ -118,7 +121,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>

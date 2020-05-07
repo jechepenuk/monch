@@ -38,9 +38,11 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
+    <title>monch profile</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+
     <script>
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
@@ -320,6 +322,7 @@ if (isset($_POST['search'])){
 <div class="innerwrapper">
 
     <div class="header">
+
         <div class="menu_welcomePage">
             <ul>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>           
@@ -330,9 +333,10 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
+    
     </div>
     <hr class="hr-navbar">
 

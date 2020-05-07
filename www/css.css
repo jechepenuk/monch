@@ -5,12 +5,28 @@ body {
     min-height: 1000px;
     background-color:white;
     overflow-x: scroll;
-
-  }
+}
+.header{
+    background-color: white;
+    padding-top: 10px;
+    position: fixed;
+    width: 90%;
+}
+.main{
+    font-size: 60px;
+}
+.newheader{
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+}
 .innerwrapper {
     width: 90%;
     min-height: 900px;
-    background-color: var(--teal);
+    background: linear-gradient( rgba(255, 255, 255, 0.774), rgba(255, 255, 255, 0.781)), url(public/leaf-pattern.jpg);
+    /* background-color: var(--teal); */
     color:black;
     margin-left: auto;
     margin-right: auto;
@@ -58,7 +74,7 @@ body {
     font-weight: bold;
     text-align: center;
     margin: auto;
-    padding-top: 20px;
+    padding-top: 120px;
 }
 
 hr.hr-navbar {
@@ -88,22 +104,18 @@ hr.hr-navbar {
 
 .logo a {
     color: black;
-    font-family: sans-serif;
+    font-family: 'Nunito', sans-serif;
     text-decoration: none;
-    font-weight: bolder;
+    font-size: 35px;
 }
 
 .logo a:hover {
     color: rgb(180, 100, 100);
 }
-
-.header {
-    padding-left: 10px;
-}
-
 .menu_welcomePage {
     font-family: "Alatsi", sans-serif;
     float: right;
+    font-weight: bold;
 }
 
 ul li {
@@ -242,14 +254,14 @@ input[type="submit"]:hover {
     border-radius: 8px;
     padding: 5px;
     font-size: 16px;
-    background-color: white;
+    background-color: rgb(180, 100, 100);
     cursor: pointer;
     border: none;
     color: black;
 }
-.selectButtonWhite:hover{
-    background-color: rgb(180, 100, 100);
+.selectButtonWhite:hover {
     background-color:black;
+    color: white;
 }
 .selectButton {
     width: 30%;
@@ -288,8 +300,13 @@ input[type="submit"]:hover {
     margin: 0 auto;
     text-align: center;
     display: block;
-
-
+    font-weight: bolder;
+    font-size: 16px;
+}
+.messagetext{
+    display: block;
+    font-weight: bolder;
+    font-size: 16px;
 }
 
 .rate {
