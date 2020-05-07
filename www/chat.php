@@ -63,7 +63,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    var div=document.getElementById("cont");
+                    var div=document.getElementById("c");
                     var child=div.lastElementChild;
             
                     while (child){
@@ -79,13 +79,13 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                             paragraph.className="messagetext";
                             var el=document.createTextNode(arr[i]);
                             paragraph.appendChild(el);
-                            var d=document.getElementById("cont");
+                            var d=document.getElementById("c");
                             d.appendChild(paragraph);
                         }
                     }
                 }
             };
-            xmlhttp.open("GET", "ajax/refresh-chat.php?chat_id=<?php echo $chatid;?>", true);
+            xmlhttp.open("GET", "ajax/refresh-chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>&chat_id=<?php echo $chatid;?>", true);
             xmlhttp.send();
         }
 
@@ -129,18 +129,19 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     
     <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
-    <div style="width: 50%; margin-left: auto; margin-right: auto;">
+    <!-- <div style="width: 50%; margin-left: auto; margin-right: auto;"> -->
+    <div class="cont">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
         <input class="log_in_input" type="text" id="message" name="message" placeholder="say something"/>
         <input type="hidden" name="user" value="admin">
 
     </form>
 
-    </div>
-    <div id="cont" class="cont">
+    <div id="c">
         <p id="chat"></p>
 
-    </div>   
+    </div> 
+    </div>  
     <form method="post" action="">
         <input class="selectButton" type="submit" name="clear" id="clear" value="clear chat"/>
     </form>

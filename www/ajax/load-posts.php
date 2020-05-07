@@ -9,7 +9,10 @@ $counts = array_count_values($following);
 $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
 
 if($myinfo['newmsg']!=0){
-    $retstring="new message!$$";
+    $result = mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $_GET['user_id'] . "' and user2='" .$myinfo['newmsg'] . "' or user2='" . $_GET['user_id'] . "' and user1='" .$myinfo['newmsg'] . "'");
+    $row=mysqli_fetch_array($result);
+    $chatid=$row['id'];
+    $retstring=$myinfo['newmsg'].",".$chatid."$$";
 }else{
     $retstring="";
 }

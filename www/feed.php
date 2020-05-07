@@ -59,10 +59,13 @@ if (isset($_POST['search'])){
                             div.removeChild(child);
                             child=div.lastElementChild;
                         }   
+                        var newnew=msg[0].split('\n');
+                        var n=newnew[1].split(",");
+                        console.log(msg[0]);
                         var paragraph=document.createElement("a");
-                        paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                        paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode(msg[0]);
+                        var el=document.createTextNode("new message!");
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
 
@@ -192,10 +195,13 @@ if (isset($_POST['search'])){
                             div.removeChild(child);
                             child=div.lastElementChild;
                         }   
+                        var newnew=msg[0].split('\n');
+                        var n=newnew[1].split(",");
                         var paragraph=document.createElement("a");
-                        paragraph.href="./messages.php?user_id=<?php echo $_GET['user_id'];?>";
+                        paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode(msg[0]);
+                        var el=document.createTextNode("new message!");
+                        console.log(msg[0]);
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
 
