@@ -56,10 +56,11 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>CF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <title>monch upload</title>
 </head>
 <body class="main-container">
 <div class="innerwrapper">
@@ -68,7 +69,6 @@ if (isset($_POST['search'])){
 
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="feed.php?user_id=<?php echo $userid;?>">feed</a> </li>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="profile.php?user_id=<?php echo $userid;?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
@@ -79,11 +79,12 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>
-    <hr class="hr-navbar">
+    <h1 class="welcome-page-title">What are you eating?</h1>
+
     <div class="message">
 
     
@@ -95,8 +96,9 @@ if (isset($_POST['search'])){
     <div class="center">
 <br>
 <br>
+<br>
+<br>
 <div class="cont">
-    <p class="center">-file size should not exceed 2MB-</p><br><br>
     <form method="post" action="" enctype="multipart/form-data">
             <input class="log_in_input" type="text" name="caption" placeholder="add a caption..."><br><br>
             <input class="log_in_input" type="file" name="imagefile"><br><br>

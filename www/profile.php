@@ -38,9 +38,11 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
+    <title>monch profile</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <script>
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
@@ -320,9 +322,9 @@ if (isset($_POST['search'])){
 <div class="innerwrapper">
 
     <div class="header">
+
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="./feed.php?user_id=<?php echo $row['user_id']; ?>">my feed</a> </li>  
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>           
                 <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
@@ -331,11 +333,11 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
+    
     </div>
-    <hr class="hr-navbar">
 
     <h1 class="welcome-page-title"><?php echo $row['username'];?></h1>
 
@@ -351,10 +353,10 @@ if (isset($_POST['search'])){
     <br>
     <div class="cc">
 
-    <button class="dropbtn2" onclick="window.location.href = './change-photo.php?user_id=<?php echo $_GET['user_id']; ?>';">edit photo</button><br><br>
+    <button class="dropbtn2" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>';">new post</button><br><br>
+    <button class="dropbtn2" onclick="window.location.href = './change-photo.php?user_id=<?php echo $_GET['user_id']; ?>';">edit photo</button><br><br><br><br>
     </div>
 
-    <hr class='navbar'><br><br>
 
     <div class="cont" id="cont">
 

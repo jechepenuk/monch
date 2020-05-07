@@ -37,8 +37,8 @@ if ($_POST['message']){
         $stmt->execute();
 
     }
+    mysqli_query($conn,"UPDATE users SET newmsg='".$me."' WHERE user_id='" . $friend . "'"); 
 
-    mysqli_query($conn,"UPDATE messages SET new=1 WHERE id='" . $chatid . "'"); 
     echo $message;
 }
 ?>

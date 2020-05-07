@@ -19,9 +19,30 @@ if (isset($_POST['follow']) || isset($_POST['unfollow'])){
 }
 
 if (isset($_POST['message'])){
-    $URL="http://localhost:8000/chat.php?user_id=" . $_GET['user_id'] . '&friend=' . $_GET['friend']; 
-    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
-}
+    $result = mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $_GET['user_id'] . "' and user2='" .$_GET['friend'] . "' or user1='" . $_GET['friend'] . "' and user2='" .$_GET['user_id'] . "'");
+    if (mysqli_num_rows($result)==0){
+        $sql = "INSERT INTO messages (user1, user2) VALUES (?,?)";
+        $stmt= $conn->prepare($sql);
+        $stmt->bind_param("ii", $_GET['user_id'], $_GET['friend']);
+        $stmt->execute();
+        
+    }else{
+        $row=mysqli_fetch_array($result);
+        if ($row['user1']==$_GET['user_id']){
+            $msgid=$row['id'];
+            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2']."&chat_id=".$msgid;
+            $URL=$link;
+            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+            
+        }else{
+            $msgid=$row['id'];
+            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2']."&chat_id=".$msgid;
+            $URL=$link;
+            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+            }
+        }
+    }
+
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
@@ -49,10 +70,12 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
+    <title>monch profile</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <script>
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
@@ -334,7 +357,6 @@ if (isset($_POST['search'])){
     <div class="header">
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>   
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li> 
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>         
                 <li><a class="navlink" href="./index.php">logout</a> </li>
@@ -343,11 +365,10 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>
-    <hr class="hr-navbar">
     <div class="message">
     
     <?php if($message!="") { 
@@ -365,7 +386,7 @@ if (isset($_POST['search'])){
      echo '<img class="profilePicture" src="public/user-default.jpg" alt="you"';
     }
     ?>    
-    <br>
+    
     <?php
     $user = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
     $userInfo = mysqli_fetch_array($user);
@@ -380,7 +401,7 @@ if (isset($_POST['search'])){
         echo '<input type="submit" class="selectButtonNarrow" name="message" value="message"></form><br>';
     }
     ?>
-    <hr class='navbar'><br><br>
+    <br><br>
 
 
     <div class="cont" id="cont">

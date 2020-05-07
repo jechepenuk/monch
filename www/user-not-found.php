@@ -32,7 +32,9 @@ if (isset($_POST['search'])){
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>CF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <title>monch not found</title>
 </head>
 <body class="main-container">
 <div class="innerwrapper">
@@ -41,7 +43,6 @@ if (isset($_POST['search'])){
 
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="feed.php?user_id=<?php echo $userid;?>">feed</a> </li>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="profile.php?user_id=<?php echo $userid;?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
@@ -51,7 +52,7 @@ if (isset($_POST['search'])){
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>

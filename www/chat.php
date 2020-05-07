@@ -55,13 +55,15 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     <link rel="stylesheet" type="text/css" href="css.css" />
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>CF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <title>monch chat</title>
     <script>
         function refreshchat() {
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    var div=document.getElementById("cont");
+                    var div=document.getElementById("c");
                     var child=div.lastElementChild;
             
                     while (child){
@@ -74,15 +76,16 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                         var arrLen=arr.length;
                         for (var i=arrLen-1; i>=0; i--){
                             var paragraph=document.createElement("p");
+                            paragraph.className="messagetext";
                             var el=document.createTextNode(arr[i]);
                             paragraph.appendChild(el);
-                            var d=document.getElementById("cont");
+                            var d=document.getElementById("c");
                             d.appendChild(paragraph);
                         }
                     }
                 }
             };
-            xmlhttp.open("GET", "ajax/refresh-chat.php?chat_id=<?php echo $chatid;?>", true);
+            xmlhttp.open("GET", "ajax/refresh-chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=<?php echo $_GET['friend'];?>&chat_id=<?php echo $chatid;?>", true);
             xmlhttp.send();
         }
 
@@ -109,7 +112,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 
         <div class="menu_welcomePage">
             <ul>
-                <li><a class="navlink" href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">feed</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
@@ -119,27 +121,27 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id']; ?>">monch</a> </h2>
         </div>
 
     </div>
-    <hr class="hr-navbar">
     
     
-    <h1 class="welcome-page-title">welcome to chat with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
+    <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
-    <div style="width: 50%; margin-left: auto; margin-right: auto;">
+    <!-- <div style="width: 50%; margin-left: auto; margin-right: auto;"> -->
+    <div class="cont">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
         <input class="log_in_input" type="text" id="message" name="message" placeholder="say something"/>
         <input type="hidden" name="user" value="admin">
 
     </form>
 
-    </div>
-    <div id="cont" class="cont">
+    <div id="c">
         <p id="chat"></p>
 
-    </div>   
+    </div> 
+    </div>  
     <form method="post" action="">
         <input class="selectButton" type="submit" name="clear" id="clear" value="clear chat"/>
     </form>

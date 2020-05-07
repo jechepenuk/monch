@@ -33,9 +33,12 @@ if (isset($_POST['search'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
-    <title>CF</title>
+    <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+    <title>monch feed</title>
     <link rel="stylesheet" type="text/css" href="css.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <script>
         function loadposts() {
             var xmlhttp = new XMLHttpRequest();
@@ -57,10 +60,13 @@ if (isset($_POST['search'])){
                             div.removeChild(child);
                             child=div.lastElementChild;
                         }   
+                        var newnew=msg[0].split('\n');
+                        var n=newnew[1].split(",");
+                        console.log(msg[0]);
                         var paragraph=document.createElement("a");
-                        paragraph.href="./messages.php?user_id=<?php echo $$_SESSION["uid"];?>";
+                        paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode(msg[0]);
+                        var el=document.createTextNode("new message!");
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
 
@@ -190,10 +196,13 @@ if (isset($_POST['search'])){
                             div.removeChild(child);
                             child=div.lastElementChild;
                         }   
+                        var newnew=msg[0].split('\n');
+                        var n=newnew[1].split(",");
                         var paragraph=document.createElement("a");
-                        paragraph.href="./messages.php?user_id=<?php echo $_SESSION["uid"];?>";
+                        paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode(msg[0]);
+                        var el=document.createTextNode("new message!");
+                        console.log(msg[0]);
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
 
@@ -340,38 +349,36 @@ if (isset($_POST['search'])){
     </script>
 </head>
 
-<body onload=loadposts() >
+<body onload=loadposts() class="main-container" >
     <div class="innerwrapper">
     <div class="header">
-
         <div class="menu_welcomePage">
             <ul>
                 <li id="update"></li>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_SESSION["uid"];?>">messages</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_SESSION["uid"];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+                <li><form method="post"><input class="searchform" type="text" name="search" placeholder="find a user"></form></li>
 
             </ul>
         </div>
 
         <div class="logo">
-            <h2 class="logo"> <a href="./index.php">Community Foods</a> </h2>
+            <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id'];?>">monch</a> </h2>
         </div>
-
     </div>
 
-    <hr class="hr-navbar">
+    <!-- <hr class="hr-navbar"> -->
     <div class="message">
     
     <?php if($message!="") { 
         echo $message; 
     } ?> 
     </div> 
-    <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?>.</h1>
+    <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?></h1>
 
-    <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_SESSION['uid']; ?>'">add post</button><br><br>
-    <hr class='navbar'><br><br>
+    <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">new post</button><br><br>
+    <br><br>
 
     <?php if(!$myinfo['following']){
         echo "<h3 class='center'>You are not following anyone yet!</h3><br>";
