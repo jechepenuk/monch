@@ -1,6 +1,6 @@
-# Social Media App
+# Monch
 
-Our app is designed to be a destination for those those looking to connect with others over food, friends, and food related events. Each new user creates their profile with a unique username and is able to find other users to folloe from the landing page of the app. 
+Our app, Monch, is designed to be a destination for those those looking to connect with others over food, friends, and food related events. Each new user creates their profile with a unique username and is able to find other users to folloe from the landing page of the app. 
 
 ## Landing Page
 
