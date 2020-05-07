@@ -76,7 +76,6 @@
         </div>
 
     </div>
-    <hr class="hr-navbar">
 
     <h1 class="welcome-page-title">Sign Up</h1>
     <br>

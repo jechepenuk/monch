@@ -369,7 +369,6 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
-    <hr class="hr-navbar">
     <div class="message">
     
     <?php if($message!="") { 

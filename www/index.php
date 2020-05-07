@@ -33,7 +33,6 @@
         </div>
 
     </div>
-    <hr class="hr-navbar">
 
     <h1 class="welcome-page-title main">welcome to monch</h1>
     <br><br>

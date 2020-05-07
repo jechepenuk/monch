@@ -52,7 +52,6 @@ if (isset($_POST['search'])){
 <body class="main-container">
 <div class="innerwrapper">
 
-    <div class="header">
 
         <div class="menu_welcomePage">
             <ul>

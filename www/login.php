@@ -49,7 +49,6 @@ if(count($_POST)>0) {
             <h2 class="logo"> <a href="./index.php">monch</a> </h2>
         </div>
     </div>
-    <hr class="hr-navbar">
 
     <br>
     <br>

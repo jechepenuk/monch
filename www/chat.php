@@ -125,7 +125,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
         </div>
 
     </div>
-    <hr class="hr-navbar">
     
     
     <h1 class="welcome-page-title">welcome to chat with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>

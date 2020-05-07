@@ -350,7 +350,7 @@ if (isset($_POST['search'])){
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+                <li><form method="post"><input class="searchform" type="text" name="search" placeholder="find a user"></form></li>
 
             </ul>
         </div>
@@ -370,7 +370,7 @@ if (isset($_POST['search'])){
     <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?></h1>
 
     <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">add post</button><br><br>
-    <hr class='navbar'><br><br>
+    <br><br>
 
     <?php if(!$myinfo['following']){
         echo "<h3 class='center'>You are not following anyone yet!</h3><br>";
