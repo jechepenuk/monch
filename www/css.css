@@ -437,3 +437,9 @@ input[type="submit"]:hover {
   .bold_me{
       font-weight: bolder;
   }
+
+  @media screen and (max-width: 900px){
+    .cont{
+        width: 90%;
+    }
+  }
