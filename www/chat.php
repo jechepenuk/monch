@@ -56,7 +56,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <title>monch chat</title>
     <script>
         function refreshchat() {
@@ -127,7 +127,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     </div>
     
     
-    <h1 class="welcome-page-title">welcome to chat with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
+    <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
     <div style="width: 50%; margin-left: auto; margin-right: auto;">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
