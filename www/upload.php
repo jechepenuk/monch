@@ -7,8 +7,10 @@ $userid=$_GET['user_id'];
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];
     $caption=htmlspecialchars($caption);
-    if (!getimagesize($_FILES['imagefile']['tmp_name'])){
-        echo "<br>Please choose a file or choose a file under 2MB.";
+    
+    if ($_FILES['imagefile']['size']==0){
+        $message="Please choose a file under 2MB.";
+
     } else {
         $target_dir = "public/";
         $temp_name = $_FILES['imagefile']['tmp_name'];
@@ -89,20 +91,19 @@ if (isset($_POST['search'])){
     </div>
     <h1 class="welcome-page-title">What are you eating?</h1>
 
-    <div class="message">
 
-    
-    <?php if($message!="") { 
-        echo $message; 
-        
-        } ?> 
-    </div> 
     <div class="center">
 <br>
 <br>
 <br>
 <br>
 <div class="cont">
+    <div class="message">
+    <?php if($message!="") { 
+        echo $message; 
+        
+        } ?> 
+    </div> 
     <form method="post" action="" enctype="multipart/form-data">
             <input class="log_in_input" type="text" name="caption" placeholder="add a caption..."><br><br>
             <input class="log_in_input" accept="image/*" type="file" name="imagefile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"><br><br>
