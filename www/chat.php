@@ -129,7 +129,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 
     <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
-    <!-- <div style="width: 50%; margin-left: auto; margin-right: auto;"> -->
     <div class="cont">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
         <input class="log_in_input" type="text" id="message" name="message" placeholder="say something"/>

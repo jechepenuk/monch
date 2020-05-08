@@ -409,7 +409,7 @@ if (isset($_POST['search'])){
      echo '<img class="profilePicture" src="public/user-default.jpg" alt="you"';
     }
     ?>    
-    
+    <br>
     <?php
     $user = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
     $userInfo = mysqli_fetch_array($user);
