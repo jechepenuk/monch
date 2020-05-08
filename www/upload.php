@@ -60,6 +60,11 @@ if (isset($_POST['search'])){
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <title>monch upload</title>
+    <script>
+        function display(file){
+            console.log(file);
+        }
+    </script>
 </head>
 <body class="main-container">
 <div class="innerwrapper">
@@ -100,13 +105,15 @@ if (isset($_POST['search'])){
 <div class="cont">
     <form method="post" action="" enctype="multipart/form-data">
             <input class="log_in_input" type="text" name="caption" placeholder="add a caption..."><br><br>
-            <input class="log_in_input" type="file" name="imagefile"><br><br>
+            <input class="log_in_input" accept="image/*" type="file" name="imagefile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"><br><br>
+            <img class="feedPic" id="output" src="" alt="no photo chosen">
             <input class="selectButton" type="submit" name="submit" value="post">
         </form>
     </div>
 </div>
+<br><br><br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     </div>
 </body>

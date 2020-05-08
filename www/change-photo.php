@@ -90,7 +90,8 @@ if (isset($_POST['search'])){
 <br><br>
     <div class="cont">
         <form method="post" action="" enctype="multipart/form-data">
-            <input class="log_in_input" type="file" name="imagefile">
+            <input class="log_in_input" accept="image/*" type="file" name="imagefile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"><br><br>
+            <img class="profilePicture" id="output" src="" alt="no photo chosen">
             <input class="selectButton" type="submit" name="submit" value="Upload">
         </form>
     </div>
