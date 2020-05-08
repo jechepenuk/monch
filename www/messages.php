@@ -45,7 +45,6 @@ if (isset($_POST['search'])){
     <title>monch messages</title>
 </head>
 <body class="main-container">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -65,6 +64,7 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
 
     <h1 class="welcome-page-title">Your Chats</h1>
     <br> 

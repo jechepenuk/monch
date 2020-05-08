@@ -118,11 +118,16 @@ if (isset($_POST['search'])){
                         fo.method="post";
                         fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
-                        comInput.className="log_in_input";
+                        comInput.className="cominput";
                         comInput.name="comment";
                         comInput.type="text";
                         comInput.id="comm";
                         comInput.placeholder="say something...";
+                        var sub=document.createElement("input");
+                        sub.type="submit";
+                        sub.value="post";
+                        sub.name="comment";
+                        sub.className="post";
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
@@ -166,16 +171,22 @@ if (isset($_POST['search'])){
                         likeInput.value=post[5];
                         likeInput.id="like";
                         fo.appendChild(comInput);
+                        fo.appendChild(sub);
                         fo.appendChild(hidden);
                         f.appendChild(likeInput);
                         f.appendChild(hiddenlike)
                         var d=document.getElementById("cont");
+                        var divider=document.createElement("divider");
+                        divider.id="divider";
+                        divider.className="sendinline";
+                        divider.appendChild(fo);
                
                         d.appendChild(smallPic);
                         d.appendChild(userlink);
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
+                        d.appendChild(divider);
                         d.appendChild(fo);
                         d.appendChild(f);
                         d.appendChild(br4);
@@ -236,11 +247,16 @@ if (isset($_POST['search'])){
                         fo.method="post";
                         fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
-                        comInput.className="log_in_input";
+                        comInput.className="cominput";
                         comInput.name="comment";
                         comInput.type="text";
                         comInput.id="comm";
                         comInput.placeholder="say something...";
+                        var sub=document.createElement("input");
+                        sub.type="submit";
+                        sub.value="post";
+                        sub.name="comment";
+                        sub.className="post";
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
@@ -284,9 +300,14 @@ if (isset($_POST['search'])){
                         likeInput.value=post[5];
                         likeInput.id="like";
                         fo.appendChild(comInput);
+                        fo.appendChild(sub);
                         fo.appendChild(hidden);
                         f.appendChild(likeInput);
                         f.appendChild(hiddenlike)
+                        var divider=document.createElement("divider");
+                        divider.id="divider";
+                        divider.className="sendinline";
+                        divider.appendChild(fo);
                         var d=document.getElementById("cont");
                
                         d.appendChild(smallPic);
@@ -294,6 +315,7 @@ if (isset($_POST['search'])){
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
+                        d.appendChild(divider);
                         d.appendChild(fo);
                         d.appendChild(f);
                         d.appendChild(br4);
@@ -352,7 +374,6 @@ if (isset($_POST['search'])){
 </head>
 
 <body class="main-container" onload=loadposts()>
-<div class="innerwrapper">
 
     <div class="header">
         <div class="menu_welcomePage">
@@ -369,6 +390,8 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
+
     <div class="message">
     
     <?php if($message!="") { 

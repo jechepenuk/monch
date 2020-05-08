@@ -61,7 +61,6 @@ if (isset($_POST['search'])){
     <title>monch upload</title>
 </head>
 <body class="main-container">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -80,6 +79,8 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
+
     <h1 class="welcome-page-title">Upload a new profile picture</h1>
 
     <br>

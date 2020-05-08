@@ -37,7 +37,6 @@ if (isset($_POST['search'])){
     <title>monch not found</title>
 </head>
 <body class="main-container">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -56,6 +55,8 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
+
     <div class="message">
     
     <?php if($message!="") { 
@@ -63,19 +64,22 @@ if (isset($_POST['search'])){
         
         } ?> 
     </div> 
-    <div class="center">
 <br>
 <br>
 <h1 class="welcome-page-title">Oh no!</h1>
 <h1 class="welcome-page-title">The profile you were looking for doesn't exist!</h1>
 <h1 class="welcome-page-title">You can try searching again below!</h1><br><br><br>
-<form method="post"><input class="ip" type="text" name="search" placeholder="find a user..."></form>
-
-
-
+<div class="cont">
+<div class="sendinline">
+<form class="center" method="post">
+    <input class="cominput" type="text" name="search" placeholder="find a user...">
+    <input class="post" type="submit" name="search" value="search">
+</form>
+    </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    </div>
+</div>
 </body>
 
 </html>

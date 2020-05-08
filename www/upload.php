@@ -69,7 +69,6 @@ if (isset($_POST['search'])){
     </script>
 </head>
 <body class="main-container">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -89,6 +88,8 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
+
     <h1 class="welcome-page-title">What are you eating?</h1>
 
 

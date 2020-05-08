@@ -36,7 +36,6 @@ if(count($_POST)>0) {
 
 <body>
     <div class="main-container">
-    <div class="innerwrapper">
     <div class="header">
         <div class="menu_welcomePage">
             <ul>
@@ -49,6 +48,7 @@ if(count($_POST)>0) {
             <h2 class="logo"> <a href="./index.php">monch</a> </h2>
         </div>
     </div>
+    <div class="innerwrapper">
 
     <h1 class="welcome-page-title logsign">Log In</h1>
 
@@ -74,5 +74,6 @@ if(count($_POST)>0) {
         </form>
     </div> 
     </div>   
+    </div>
 </body>
 </html>

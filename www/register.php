@@ -56,7 +56,6 @@
 
 </head>
 <body>
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -77,6 +76,7 @@
         </div>
 
     </div>
+    <div class="innerwrapper">
 
     <h1 class="welcome-page-title logsign">Sign Up</h1>
     <br>

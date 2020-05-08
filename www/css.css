@@ -3,8 +3,7 @@
 }
 body {
     /* min-height: auto; */
-    background-color:white;
-    /* overflow-x: scroll; */
+    background: linear-gradient( rgba(255, 255, 255, 0.774), rgba(255, 255, 255, 0.781)), url(public/bg.png);    /* overflow-x: scroll; */
 }
 .homepage{
     min-height:1000px;
@@ -14,7 +13,7 @@ body {
 }
 .header{
     background-color: white;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     position: fixed;
     width: 100%;
 }
@@ -34,8 +33,8 @@ body {
 }
 .innerwrapper {
     min-height: 1000px;
-    width: 100%;
-    background: linear-gradient( rgba(255, 255, 255, 0.774), rgba(255, 255, 255, 0.781)), url(public/leaf-pattern.jpg);
+    width: 80%;
+    background-color: rgba(184, 184, 184, 0.363);
     color:black;
     margin-left: auto;
     margin-right: auto;
@@ -87,8 +86,8 @@ body {
 }
 
 .welcome-page-buttons:hover, .aboutButton:hover {
-    background-color: black;
-    color: rgb(107, 141, 124);
+    color: white;
+    background-color: rgb(65, 135, 175);
 }
 .searchform{
     width: 80%;
@@ -97,7 +96,7 @@ body {
 .navlink:hover,
 .dropbtn:hover,
 .linky:hover {
-    color: rgb(107, 141, 124);
+    color: rgb(65, 135, 175);
 }
 
 .logo a {
@@ -109,7 +108,8 @@ body {
 }
 
 .logo a:hover {
-    color: rgb(107, 141, 124);}
+    color: rgb(65, 135, 175);
+}
 .menu_welcomePage {
     font-family: "Nunito", sans-serif;
     float: right;
@@ -140,15 +140,34 @@ ul li a:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 5px;
     font-size: 16px;
-    background-color: rgb(142, 190, 166);
+    background-color: rgb(78, 160, 207);
     cursor: pointer;
     border: none;
-    color: black;
+    color: white;
 }
-
+.cominput{
+    width: 90%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.post{
+    width: 10%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(78, 160, 207);
+    border: none;
+}
 
 .log_in_input,
 .sign_up_input {
@@ -173,13 +192,8 @@ ul li a:hover {
     padding-bottom: 40px;
 }
 
-input[type="submit"]:hover {
-    background-color: rgb(107, 141, 124);
-    color: black;
-}
-
 #tutor_signup_div {
-    border-radius: 5px;
+    border-radius: 4px;
     margin-left: 20%;
     margin-right: 20%;
 }
@@ -192,19 +206,19 @@ input[type="submit"]:hover {
     display: inline-block;
     border: 0px solid #ccc;
     margin-top: 10px;
-    background-color: rgb(142, 190, 166);
-    color: black;
+    background-color: rgb(78, 160, 207);
+    color: white;
     border: none;
     width: 100%;
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: large ;
 }
 
 #tutor_signup_submit:hover,
 #log_in_button:hover {
-    background-color: rgb(107, 141, 124);
-    color: black; 
+    background-color: rgb(65, 135, 175);
+    color: white; 
 }
 
 #forgot_link_id {
@@ -213,27 +227,10 @@ input[type="submit"]:hover {
 }
 
 .message {
-    color: rgb(128, 50, 50);
+    color: rgb(179, 72, 72);
     font-size: larger;
 }
 
-
-/* search style */
-
-.big{
-    width: 30%;
-    margin-top: 2%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 20px;
-    background-color: rgb(142, 190, 166);
-    cursor: pointer;
-    border: none;
-    color: black;  
-}
 
 .selectButton {
     width: 30%;
@@ -241,20 +238,20 @@ input[type="submit"]:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 5px;
     font-size: 16px;
-    background-color: rgb(142, 190, 166);;
+    background-color: rgb(78, 160, 207);
     cursor: pointer;
     border: none;
-    color: black;
+    color: white;
 }
-.selectButtonNarrow:hover,
+.post:hover,
 .selectButton:hover,
-.calendarView:hover,
+.selectButtonNarrow:hover,
 .selectButton2:hover, .big:hover {
-    background-color: rgb(107, 141, 124);
-    color: black;
+    background-color: rgb(65, 135, 175);
+    color: white;
 }
 
 .smallPic{
@@ -273,7 +270,7 @@ input[type="submit"]:hover {
     font-weight: bold;
 }
 .chatlink:hover{
-    color: rgb(107, 141, 124);
+    color: rgb(65, 135, 175);
 
 }
 .center {
@@ -294,18 +291,19 @@ input[type="submit"]:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 2px;
     font-size: 13px;
-    background-color: rgb(142, 190, 166);
+    background-color: rgb(78, 160, 207);
     cursor: pointer;
     border: none;
-    color: black;
+    color: white;
 }
 .rate:hover{
-    background-color: rgb(107, 141, 124);
-    color: black;
+    background-color: rgb(65, 135, 175);
+    color: white;
 }
+
 
 .inline{
     margin-left: auto;
@@ -339,11 +337,11 @@ input[type="submit"]:hover {
 }
 .dropbtn2 {
     width: 100px;
-    background-color: rgb(142, 190, 166);
-    color: black;
+    background-color: rgb(78, 160, 207);
+    color: white;
     padding: 2px;
     font-size: 16px;
-    border-radius: 8px;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
   }
@@ -398,13 +396,17 @@ input[type="submit"]:hover {
     color: black;
   }
   .dropbtn2:hover{
-    background-color: rgb(107, 141, 124);
-    color: black;
+    background-color: rgb(65, 135, 175);
+    color: white;
   }
   .blink_me {
     animation: blinker 1s linear infinite;
     font-weight: bolder;
     color: rgb(255, 0, 106);
+  }
+  .sendinline{
+    display: flex;
+    align-items: center;
   }
   
   @keyframes blinker {
@@ -425,5 +427,8 @@ input[type="submit"]:hover {
     }
     .ip{
         width: 80%;
+    }
+    .innerwrapper{
+        width: 90%;
     }
   }

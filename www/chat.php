@@ -106,7 +106,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     </script>
 </head>
 <body class="main-container" onload="setInterval(refreshchat,1500)">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -126,7 +125,8 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 
     </div>
     
-    
+    <div class="innerwrapper">
+
     <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
     <!-- <div style="width: 50%; margin-left: auto; margin-right: auto;"> -->
