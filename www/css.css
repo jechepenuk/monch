@@ -6,6 +6,12 @@ body {
     background-color:white;
     /* overflow-x: scroll; */
 }
+.homepage{
+    min-height:1000px;
+    background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.781)), url(public/food-dinner-lunch-unhealthy-70497.jpg);
+
+    /* background-image: url(); */
+}
 .header{
     background-color: white;
     padding-top: 10px;
@@ -13,13 +19,17 @@ body {
     width: 100%;
 }
 .main{
-    font-size: 60px;
+    font-size: 80px;
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+    padding-top: 80px;
 }
 .newheader{
     margin: 0 auto;
     text-align: center;
     display: block;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
 }
 .innerwrapper {
@@ -61,8 +71,9 @@ body {
 .welcome-page-title {
     text-align: center;
     margin: auto;
-    padding-top: 120px;
     font-family: 'Rubik', sans-serif;
+    padding-top: 120px;
+
 }
 
 .bottompad{

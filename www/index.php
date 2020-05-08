@@ -13,7 +13,7 @@
 </head>
 
 <body class="main-container">
-<div class="innerwrapper">
+<div class="homepage">
 
     <div class="header">
 
@@ -34,16 +34,14 @@
 
     </div>
 
-    <h1 class="welcome-page-title main">welcome to monch</h1>
-    <br><br>
-    <h2 class="newheader">a destination for every food lover...</h2><br>
-    <h2 class="newheader">share your food with us!</h2>
+    <h1 class="main">monch</h1>
+    <h2 class="newheader">share your food with us</h2>
 
 
 
-    <br><br><br><br><br><br><br><br><br>
+    <!-- <br><br><br><br><br><br><br><br><br>
         <button class="big" onclick="window.location.href = 'login.php'">Log In</button>
-        <button class= "big" onclick="window.location.href = 'register.php'">Register</button>
+        <button class= "big" onclick="window.location.href = 'register.php'">Register</button> -->
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
