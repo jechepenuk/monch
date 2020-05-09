@@ -1,8 +1,16 @@
 ﻿PHP REPORT
-PHP which stands for PHP Hypertext Preprocessor and is widely-used. It is an open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. PHP was created by Rasmus Lerdorf as a set of Common Gateway Interface binaries written in C to create dynamic Web Applications. As a highly productive Server-Side Web development programming language, it is widely used in the industry to develop a Web application at a rapid pace.The PHP code allows you to go in and out of PHP mode by using enclosed special start and end  tags ( <?php and ?> ). PHP is executed on the server side as opposed to on the client. PHP processes the code before anything gets sent to the browser. It also allows you to easily process data and store in and retrieve it from the database. 
+PHP which stands for PHP Hypertext Preprocessor and is widely-used. It is an open source general-purpose 
+scripting language that is especially suited for web development and can be embedded into HTML. PHP was 
+created by Rasmus Lerdorf as a set of Common Gateway Interface binaries written in C to create dynamic Web 
+Applications. As a highly productive Server-Side Web development programming language, it is widely used 
+in the industry to develop a Web application at a rapid pace.The PHP code allows you to go in and out of 
+PHP mode by using enclosed special start and end  tags ( <?php and ?> ). PHP is executed on the server 
+side as opposed to on the client. PHP processes the code before anything gets sent to the browser. It also 
+allows you to easily process data and store in and retrieve it from the database. 
 
 
-As mentioned, PHP is an open source and redistribution is permitted in source and binary forms, with or without modification given the following these conditions:
+As mentioned, PHP is an open source and redistribution is permitted in source and binary forms, with or 
+without modification given the following these conditions:
 
 
 1. Redistributions of source code must retain the above copyright
