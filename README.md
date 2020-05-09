@@ -1,6 +1,6 @@
 # monch
 
-Our app is designed to be a destination for those those looking to connect with others over food, friends, and food related events. Each new user resisters with their persoanl info and is redirected to the monch feed. Returning users login with their credentials to return to their feed.
+Monch is designed to be a destination for those those looking to connect with others over food, friends, and food related events. Each new user resisters with their persoanl info and is redirected to the monch feed. Returning users log in with their credentials to return to their feed.
 
 ## monch feed
 
