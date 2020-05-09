@@ -14,7 +14,26 @@ $counts = array_count_values($following);
 $newmsg=$myinfo['newmsg'];
 $updatemsg=$newmsg;
 //long poll here
-while($newcount==$count && $newmsg==$updatemsg){
+
+$sumg=mysqli_query($conn,"SELECT SUM(`likes`) AS likesum FROM `posts`");
+$sumrow=mysqli_fetch_array($sumg);
+$sumlikes=$sumrow['likesum'];
+
+$sumc=mysqli_query($conn,"SELECT SUM(`numcomments`) AS comsum FROM `posts`");
+$sumrowc=mysqli_fetch_array($sumc);
+$sumcom=$sumrowc['comsum'];
+
+$totalComments=$sumcom;
+$totalLikes=$sumlikes;
+
+while($newcount==$count && $newmsg==$updatemsg && $totalComments==$sumcom && $totalLikes==$sumlikes){
+    $sumg=mysqli_query($conn,"SELECT SUM(`likes`) AS likesum FROM `posts`");
+    $sumrow=mysqli_fetch_array($sumg);
+    $sumlikes=$sumrow['likesum'];
+
+    $sumc=mysqli_query($conn,"SELECT SUM(`numcomments`) AS comsum FROM `posts`");
+    $sumrowc=mysqli_fetch_array($sumc);
+    $sumcom=$sumrowc['comsum'];
     $postsresults = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
     $newcount=mysqli_num_rows($postsresults);
     $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");

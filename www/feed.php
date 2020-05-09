@@ -65,7 +65,7 @@ if (isset($_POST['search2'])){
                         var paragraph=document.createElement("a");
                         paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode("new message!");
+                        var el=document.createTextNode("new!");
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
 
@@ -215,7 +215,7 @@ if (isset($_POST['search2'])){
                         var paragraph=document.createElement("a");
                         paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode("new message!");
+                        var el=document.createTextNode("new!");
                         console.log(msg[0]);
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
