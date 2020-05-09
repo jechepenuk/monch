@@ -403,7 +403,7 @@ if (isset($_POST['search2'])){
         echo $message; 
     } ?> 
     </div> 
-    <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?></h1>
+    <h1 class="welcome-page-title">Welcome back, <?php echo $myinfo['username'];?> !</h1>
 
     <button class="selectButtonNarrow" onclick="window.location.href = './upload.php?user_id=<?php echo $_GET['user_id']; ?>'">new post</button><br><br>
     <br><br>

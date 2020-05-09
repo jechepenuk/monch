@@ -6,8 +6,10 @@ $chatid=$_GET['chat_id'];
 $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['friend'] . "'");
 $row = mysqli_fetch_array($result);
 $friend=$row['username'];
-
-if (isset($_POST['search2'])){
+$me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
+$row2 = mysqli_fetch_array($me);
+$my_name=$row2['username'];
+if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -75,12 +77,23 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                         var arr=total.split("%%%");
                         var arrLen=arr.length;
                         for (var i=arrLen-1; i>=0; i--){
-                            var paragraph=document.createElement("p");
-                            paragraph.className="messagetext";
-                            var el=document.createTextNode(arr[i]);
-                            paragraph.appendChild(el);
-                            var d=document.getElementById("c");
-                            d.appendChild(paragraph);
+                            if(arr[i].includes("<?php echo $my_name;?>")){
+                                var paragraph=document.createElement("p");
+                                paragraph.className="messagetext";
+                                var el=document.createTextNode(arr[i]);
+                                paragraph.appendChild(el);
+                                var d=document.getElementById("c");
+                                d.appendChild(paragraph);
+                                }
+                            else{
+                                var paragraph=document.createElement("p");
+                                paragraph.className="messagetext2";
+                                var el=document.createTextNode(arr[i]);
+                                paragraph.appendChild(el);
+                                var d=document.getElementById("c");
+                                d.appendChild(paragraph);
+                            }
+                            
                         }
                     }
                 }
