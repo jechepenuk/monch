@@ -232,8 +232,12 @@ ul li a:hover {
     color: rgb(179, 72, 72);
     font-size: larger;
 }
-
-
+.messagetext2{
+    color: gray;
+}
+.messagetext{
+    color: blue;
+}
 .selectButton {
     width: 30%;
     margin-top: 2%;
@@ -278,11 +282,6 @@ ul li a:hover {
 .center {
     margin: 0 auto;
     text-align: center;
-    display: block;
-    font-weight: bolder;
-    font-size: 16px;
-}
-.messagetext{
     display: block;
     font-weight: bolder;
     font-size: 16px;
@@ -376,7 +375,6 @@ ul li a:hover {
     margin-left: auto;
     margin-right: auto;
     display: block;    
-
   }
   
   /* Change color of dropdown links on hover */
