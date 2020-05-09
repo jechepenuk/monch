@@ -1,5 +1,14 @@
 ﻿MySQL REPORT
-MySQL is a relational database management system. Managed and owned by the Oracle corporation, it is an open source system used to store data and it works on many platforms. MySQL uses a client-server model, which means the database runs on the server. Computers that install and run RDBMS software are called clients, while the database lives on the server where clients access the data. MySQL uses the structure query language, known as SQL, to define, update, and query the database. Written in C and C++, MySQL is flexible, easy to use, secure, and balances high power with high performance.
+MySQL is a relational database management system. Managed and owned by the Oracle corporation, it is 
+an open source system used to store data and it works on many platforms. MySQL uses a client-server model, 
+which means the database runs on the server. Computers that install and run RDBMS software are called 
+clients, while the database lives on the server where clients access the data. MySQL uses the structure 
+query language, known as SQL, to define, update, and query the database. Written in C and C++, MySQL is 
+flexible, easy to use, secure, and balances high power with high performance.
 
 
-As mentioned, MySQL is open source and falls under the GNU public license. GNU Public License determines what you can and cannot do depending on conditions. GNU General Public License is intended to guarantee your freedom to share and change free software. The distribution and sale of this software is permitted under this license. The commercially licensed version is available if you need more flexible ownership and advanced support.
+As mentioned, MySQL is open source and falls under the GNU public license. GNU Public License determines 
+what you can and cannot do depending on conditions. GNU General Public License is intended to guarantee 
+your freedom to share and change free software. The distribution and sale of this software is permitted 
+under this license. The commercially licensed version is available if you need more flexible ownership and 
+advanced support.
