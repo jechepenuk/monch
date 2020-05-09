@@ -23,7 +23,6 @@ if (isset($_POST['search2'])){
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -191,9 +190,11 @@ if (isset($_POST['search2'])){
         refreshposts();
 
         function refreshposts() {
+            console.log("resfreshing...");
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
                     var div=document.getElementById("cont");
                     var child=div.lastElementChild;
             
@@ -346,16 +347,13 @@ if (isset($_POST['search2'])){
                 const request= new XMLHttpRequest();
                 request.onreadystatechange = function(){
                     if (this.readyState ===4 && this.status ===200){
-                        console.log(this.responseText);
                         loadposts();
                     }
                 };
                 request.open("POST", "ajax/update-post-comment.php?user_id=<?php echo $_GET['user_id'];?>");
                 request.send(formData);
             }
-
         }
-        refreshposts();
 
         function sendFormDataLike(elem){
             event.preventDefault();
@@ -372,8 +370,6 @@ if (isset($_POST['search2'])){
             request.open("POST", "ajax/update-post-like.php?user_id=<?php echo $_GET['user_id'];?>");
             request.send(formData);
         }
-        refreshposts();
-        
     </script>
 </head>
 

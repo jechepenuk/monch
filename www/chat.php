@@ -153,7 +153,8 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
         <input type="hidden" name="user" value="admin">
 
     </form>
-
+</div>
+    <div class="contc">
     <div id="c">
         <p id="chat"></p>
 
@@ -164,6 +165,7 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     </form>
     <br>
     <br>
+    
     </div>
 
 

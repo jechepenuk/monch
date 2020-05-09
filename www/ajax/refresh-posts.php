@@ -49,7 +49,10 @@ if($myinfo['newmsg']!=0){
 }else{
     $retstring="";
 }
-while ($singlePost=mysqli_fetch_array($postsresults)){ 
+
+$posties = mysqli_query($conn,"SELECT * FROM posts ORDER BY id DESC");
+
+while ($singlePost=mysqli_fetch_array($posties)){ 
     $count1=$counts[$singlePost['user_id']];
     if ($count1 % 2 == 1  || $singlePost['user_id']==$_GET['user_id'] ){
         $usr = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $singlePost['user_id'] . "'");
