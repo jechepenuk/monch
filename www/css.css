@@ -1,0 +1,458 @@
+:root {
+    --teal: rgb(183, 202, 193);
+}
+body {
+    /* min-height: auto; */
+    background: linear-gradient( rgba(255, 255, 255, 0.774), rgba(255, 255, 255, 0.781)), url(public/bg.png);    /* overflow-x: scroll; */
+}
+.homepage{
+    min-height:1000px;
+    background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.781)), url(public/food-dinner-lunch-unhealthy-70497.jpg);
+
+    /* background-image: url(); */
+}
+.header{
+    background-color: white;
+    /* padding-top: 10px; */
+    position: fixed;
+    width: 100%;
+}
+.main{
+    font-size: 80px;
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+    padding-top: 80px;
+}
+.newheader{
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    font-size: 40px;
+    font-weight: 600;
+}
+.innerwrapper {
+    min-height: 1000px;
+    width: 80%;
+    background-color: rgba(184, 184, 184, 0.363);
+    color:black;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Rubik', sans-serif;
+
+}
+
+.profilePic{
+    width: 500px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.feedPic{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+}
+
+.profilePicture{
+    width:200px;
+    height:200px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+}
+
+.welcome-page-title {
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+    padding-top: 120px;
+
+}
+
+.bottompad{
+    padding-bottom: 100px;
+}
+
+.route-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.welcome-page-buttons:hover, .aboutButton:hover {
+    color: white;
+    background-color: rgb(65, 135, 175);
+}
+.searchform{
+    width: 80%;
+}
+.proflink:hover,
+.navlink:hover,
+.dropbtn:hover,
+.linky:hover {
+    color: rgb(65, 135, 175);
+}
+
+.logo a {
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    font-size: 35px;
+    padding-left: 10px;
+}
+
+.logo a:hover {
+    color: rgb(65, 135, 175);
+}
+.menu_welcomePage {
+    font-family: "Nunito", sans-serif;
+    float: right;
+    font-weight: bold;
+}
+
+ul li {
+    display: inline;
+    padding: 10px;
+}
+ul li form{
+    display: inline-block;
+    /* padding-left: 10px; */
+}
+
+ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+.selectButtonNarrow{
+    width: 15%;
+    margin-top: 2%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgb(78, 160, 207);
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+.cominput{
+    width: 88%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.post{
+    width: 10%;
+    padding: 7px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(78, 160, 207);
+    border: none;
+}
+.go{
+    color: white;
+    width: 6%;
+    padding: 7px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(78, 160, 207);
+    border: none;
+}
+.smallgo{
+    color: white;
+    /* width: 6%; */
+    /* padding: 7px; */
+    /* margin: 8px 0; */
+    border-radius: 2px;
+    box-sizing: border-box;
+    background-color: rgb(78, 160, 207);
+    border: none; 
+}
+.go:hover, .smallgo:hover{
+    background-color: rgb(65, 135, 175);
+}
+
+.log_in_input,
+.sign_up_input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.addcomment {
+    width: 50%;
+    padding: 4px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.input_text_field {
+    padding-bottom: 40px;
+}
+
+#tutor_signup_div {
+    border-radius: 4px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.logsign{
+    padding-top: 200px;
+}
+
+#tutor_signup_submit,
+#log_in_button {
+    display: inline-block;
+    border: 0px solid #ccc;
+    margin-top: 10px;
+    background-color: rgb(78, 160, 207);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: large ;
+}
+
+#tutor_signup_submit:hover,
+#log_in_button:hover {
+    background-color: rgb(65, 135, 175);
+    color: white; 
+}
+
+#forgot_link_id {
+    color: black;
+    font-weight: bold;
+}
+
+.message {
+    color: rgb(179, 72, 72);
+    font-size: larger;
+}
+
+
+.selectButton {
+    width: 30%;
+    margin-top: 2%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgb(78, 160, 207);
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+.post:hover,
+.selectButton:hover,
+.selectButtonNarrow:hover,
+.selectButton2:hover, .big:hover {
+    background-color: rgb(65, 135, 175);
+    color: white;
+}
+
+.smallPic{
+    width: 40px;
+    height: 40px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px lightslategray;
+}
+.chatlink{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+}
+.chatlink:hover{
+    color: rgb(65, 135, 175);
+
+}
+.center {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    font-weight: bolder;
+    font-size: 16px;
+}
+.messagetext{
+    display: block;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.rate {
+    width: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 13px;
+    background-color: rgb(78, 160, 207);
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+.rate:hover{
+    background-color: rgb(65, 135, 175);
+    color: white;
+}
+
+
+.inline{
+    margin-left: auto;
+    margin-right: auto;
+}
+.proflink{
+    text-decoration: none;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    font-size: larger;
+    font-weight: bold;
+}
+.ip{
+    width: 50%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.cont{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.linky{
+    text-decoration: none;
+}
+.dropbtn2 {
+    width: 100px;
+    background-color: rgb(78, 160, 207);
+    color: white;
+    padding: 2px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .cc{
+      text-align: center;
+  }
+  .cont2{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content2 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;    
+
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content2 a:hover {
+      background-color: #f1f1f1;}
+      /* margin-left: auto;
+      margin-right: auto;
+      display: block;
+    } */
+  
+  /* Show the dropdown menu on hover */
+  .cont2:hover .dropdown-content2 {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .cont2:hover .dropbtn2 {
+    background-color: white;
+    color: black;
+  }
+  .dropbtn2:hover{
+    background-color: rgb(65, 135, 175);
+    color: white;
+  }
+  .blink_me {
+    animation: blinker 1s linear infinite;
+    font-weight: bolder;
+    color: rgb(255, 0, 106);
+  }
+  .sendinline{
+    display: flex;
+    align-items: center;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+  .bold_me{
+      font-weight: bolder;
+  }
+
+  @media screen and (max-width: 900px){
+    .cont{
+        width: 90%;
+    }
+    .big{
+        width: 80%;
+    }
+    .ip{
+        width: 80%;
+    }
+    .innerwrapper{
+        width: 90%;
+    }
+  }

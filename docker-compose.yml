@@ -1,0 +1,48 @@
+version: "3.2"
+services:
+  php:
+    build: 
+      context: .
+    image: cse312/php-mysql:1.0.0
+    networks:
+      - frontend
+      - backend
+    environment:
+      - MYSQL_HOST=mysql-app
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_DB=social-media
+    volumes:
+      - ./www/:/var/www/html/
+    ports:
+      - "8000:80"
+    container_name: php-app
+  mysql:
+    image: mysql:5.7
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=user
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_DATABASE=social-media
+    volumes: 
+        - ./DB_Scripts:/docker-entrypoint-initdb.d
+    container_name: mysql-app
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    ports:
+      - "3000:80"
+    environment:
+      - PMA_HOST=mysql-app
+      - PMA_PORT= 3306
+    volumes:
+      - /sessions
+    container_name: phpmyadmin-app
+networks:
+  frontend:
+  backend:
