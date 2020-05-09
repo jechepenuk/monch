@@ -126,9 +126,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
             <ul>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
-<<<<<<< HEAD
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
-=======
                 <li><form method="post">
                     <input type="text" name="search" placeholder="find a user">
                     <input class="smallgo" type="submit" name="search2" value="go">
@@ -136,7 +133,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
                 </li>
 
 
->>>>>>> d5588eff4f3b6bce729d2fab8bcb144d5faad57b
             </ul>
         </div>
 
