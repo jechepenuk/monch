@@ -36,7 +36,7 @@ if (isset($_POST['message'])){
             
         }else{
             $msgid=$row['id'];
-            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2']."&chat_id=".$msgid;
+            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user1']."&chat_id=".$msgid;
             $URL=$link;
             echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
             }
