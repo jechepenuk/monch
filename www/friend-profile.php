@@ -36,14 +36,14 @@ if (isset($_POST['message'])){
             
         }else{
             $msgid=$row['id'];
-            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user2']."&chat_id=".$msgid;
+            $link="chat.php?user_id=".$_GET['user_id']."&friend=".$row['user1']."&chat_id=".$msgid;
             $URL=$link;
             echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
             }
         }
     }
 
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -381,8 +381,12 @@ if (isset($_POST['search'])){
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li> 
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>         
                 <li><a class="navlink" href="./index.php">logout</a> </li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
-            </ul>
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>           
+             </ul>
         </div>
 
         <div class="logo">
@@ -409,7 +413,7 @@ if (isset($_POST['search'])){
      echo '<img class="profilePicture" src="public/user-default.jpg" alt="you"';
     }
     ?>    
-    
+    <br>
     <?php
     $user = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
     $userInfo = mysqli_fetch_array($user);
