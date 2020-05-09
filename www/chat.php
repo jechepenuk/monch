@@ -131,7 +131,8 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     <br><br>
     <div class="cont">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
-        <input class="log_in_input" type="text" id="message" name="message" placeholder="say something"/>
+        <input class="cominput" type="text" id="message" name="message" placeholder="say something"/>
+        <input class="post" type="submit" name="message1" value="Send">
         <input type="hidden" name="user" value="admin">
 
     </form>

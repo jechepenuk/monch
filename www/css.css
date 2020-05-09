@@ -149,7 +149,7 @@ ul li a:hover {
     color: white;
 }
 .cominput{
-    width: 90%;
+    width: 88%;
     padding: 8px;
     margin: 8px 0;
     display: inline-block;
@@ -159,12 +159,22 @@ ul li a:hover {
 }
 .post{
     width: 10%;
-    padding: 8px;
+    padding: 7px;
     margin: 8px 0;
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
     color: white;
+    background-color: rgb(78, 160, 207);
+    border: none;
+}
+.go{
+    color: white;
+    width: 6%;
+    padding: 7px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
     background-color: rgb(78, 160, 207);
     border: none;
 }
