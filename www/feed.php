@@ -355,6 +355,7 @@ if (isset($_POST['search2'])){
             }
 
         }
+        refreshposts();
 
         function sendFormDataLike(elem){
             event.preventDefault();
@@ -371,6 +372,8 @@ if (isset($_POST['search2'])){
             request.open("POST", "ajax/update-post-like.php?user_id=<?php echo $_GET['user_id'];?>");
             request.send(formData);
         }
+        refreshposts();
+        
     </script>
 </head>
 
