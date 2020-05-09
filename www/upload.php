@@ -1,9 +1,20 @@
 <?php
+session_start(); 
+
 $message="";
 
 include_once 'access-db.php';
-$userid=$_GET['user_id'];
-
+$userid=$_SESSION["uid"];
+if ($_GET['user_id']!=$userid){
+    $URL="http://localhost:8000/user-not-found.php?user_id=".$_SESSION['uid']; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+}
+if (isset($_POST['logout'])){
+    session_unset();
+    session_destroy();
+    $URL="http://localhost:8000/index.php"; 
+    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+}
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];
     $caption=htmlspecialchars($caption);
@@ -76,7 +87,7 @@ if (isset($_POST['search2'])){
             <ul>
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="profile.php?user_id=<?php echo $userid;?>">profile</a> </li>
-                <li><a class="navlink" href="./index.php">logout</a> </li>
+                <li><form method="post"><input class="navlinkbutton" type="submit" name="logout" value="logout"></form></li>
                 <li><form method="post">
                     <input type="text" name="search" placeholder="find a user">
                     <input class="smallgo" type="submit" name="search2" value="go">

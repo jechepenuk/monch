@@ -1,4 +1,6 @@
 <?php
+session_start(); 
+
    include_once "access-db.php";
    
    $message="";
@@ -33,7 +35,8 @@
            $result1 = mysqli_query($conn,"SELECT * FROM users WHERE email='" . $_POST["email"] . "'");
            $row=mysqli_fetch_array($result1);
            $userid=$row['user_id'];
-           $URL="http://localhost:8000/feed.php?user_id=" .$userid; 
+           $_SESSION["uid"] = $userid;
+           $URL="http://localhost:8000/feed.php?user_id=" .$_SESSION['uid']; 
            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 
        }

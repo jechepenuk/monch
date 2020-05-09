@@ -31,6 +31,17 @@ body {
     font-size: 40px;
     font-weight: 600;
 }
+.navlinkbutton{
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+}
+.navlinkbutton:hover{
+    text-decoration: underline;
+    color: rgb(65, 135, 175);
+}
 .innerwrapper {
     min-height: 1000px;
     width: 80%;
