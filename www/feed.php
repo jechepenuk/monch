@@ -6,7 +6,7 @@ $userid=$_GET['user_id'];
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['user_id'] . "'");
 $myinfo=mysqli_fetch_array($me);
 
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -382,8 +382,11 @@ if (isset($_POST['search'])){
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id'];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
-                <li><form method="post"><input class="searchform" type="text" name="search" placeholder="find a user"></form></li>
-
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
             </ul>
         </div>
 

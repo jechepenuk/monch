@@ -7,7 +7,7 @@ $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['frie
 $row = mysqli_fetch_array($result);
 $friend=$row['username'];
 
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -113,7 +113,11 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
             <ul>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
 
 
             </ul>

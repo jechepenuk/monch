@@ -178,6 +178,19 @@ ul li a:hover {
     background-color: rgb(78, 160, 207);
     border: none;
 }
+.smallgo{
+    color: white;
+    /* width: 6%; */
+    /* padding: 7px; */
+    /* margin: 8px 0; */
+    border-radius: 2px;
+    box-sizing: border-box;
+    background-color: rgb(78, 160, 207);
+    border: none; 
+}
+.go:hover, .smallgo:hover{
+    background-color: rgb(65, 135, 175);
+}
 
 .log_in_input,
 .sign_up_input {

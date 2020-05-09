@@ -11,7 +11,7 @@ $cc=mysqli_num_rows($r);
 mysqli_query($conn,"UPDATE users SET convos='" . $cc . "' WHERE user_id='" . $me . "'"); 
 
 $result = mysqli_query($conn,"SELECT * FROM messages WHERE user1='" . $_GET['user_id'] . "' or user2='" .$_GET['user_id'] . "'");
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -53,8 +53,11 @@ if (isset($_POST['search'])){
 
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
-
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
 
             </ul>
         </div>
