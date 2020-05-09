@@ -21,7 +21,7 @@ if (($_POST['comment'])){
     }else{
         $updatedComments=$currComments . ',   ' . $commenter . ': ' . $comment;
     }
-    $numcom=$postid['numcomments']+1;
+    $numcom=$postinfo['numcomments']+1;
     mysqli_query($conn,"UPDATE posts SET comments='" . $updatedComments . "', numcomments='" . $numcom . "'  WHERE id='" . $postid . "'"); 
     // $URL="http://localhost:8000/feed.php?user_id=".$_GET['user_id']; 
     // echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
