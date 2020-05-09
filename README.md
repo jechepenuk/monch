@@ -1,20 +1,31 @@
-# Social Media App
+# monch
 
-Our app is designed to be a destination for those those looking toc connect with other another over food, friends, and food related events. Each new user creates their profile with a unique username and is able to find other users to from the landing page of the app. 
+Monch is designed to be a destination for those those looking to connect with others over food, friends, and food related events. Each new user resisters with their persoanl info and is redirected to the monch feed. Returning users log in with their credentials to return to their feed.
 
-## Landing Page
+## monch feed
 
-The landing page acts as an exploratory page which shows users content based on their interests. If the user is new, the page will show generic content aimed at the general public. If the user has begun to follow other users, the content of those they are following will show up closer to the top of the page. The user will be able to like and comment the multimedia posts on the landing page. These posts will include the types: image, gif, or video and will have the option for a caption.
-Users will be able the click the user name linked to a post which directs them to that user's profile.
+The monch feed shows content in reverse chronological order and contains content from themselves and those they follow. If the user is not following anyone, three profiles are displayed as options to follow to get the user started with monch. The new user can also utilize the search bar to search for a friend. Posts are updated in real time if another user comments, likes, or creates new content on the feed. At the top of the feed, there is an option to make a new post which will redirect to the upload page.
 
-## Accounts
+## monch upload
 
-Each user will have an account, where they can edit their personal information, change their profile photo, or add content. When a user visits a profile other that than their own, they are able to follow that user, as well as see content explicitly posted by that user. Upon following that user, they are then able to send them direct messages.
+The monch upload page allows users to upload content and optionally add a caption. The user is able to preview how their photo will appear on the feed page before the upload is completed. On upload, the user is redirected to their monch feed.
 
-## Messages
+## monch profile
 
-Upon opening messages from a user's profile, the user will be able to message the other and the chat will be saved. If "messages" is visited from the navigation bar, a different page will open showing all recent chats, with a start chat button and the ability to choose from those the user is following to chat with.
+Each user will have an account which shows content specific to themselves. Posts show changes in likes and comments in real time on the monch profile. Users can add a post from their profile, which takes them to the monch uplaoad page. The user can also edit or upload a profile picture. The upload page for the profile picture works similarly to the upload post page, where the user can preview how their profile picture will look before they confirm upload.
 
-## Reports
+## monch messages
+
+Each page has a messages link in the navbar at the top of the page. Clicking messages will redirect you to monch messages. This page shows all current conversations with other users. If a user's name is flashing hot pink, it means that you have a new mesage from this user. When a name is clicked, you are redirected to a monch chat with that person.
+
+## monch friends
+
+If a user searches for another existing user or clicks a user's name with a link, they are redirected to monch friend, the friend's profile. If you are follow that user, you will see two buttons: unfollow and message. If you are not following them, you will see one button: follow. Either way, you are able to see their profile and all their content as all profiles on monch are public. If you decide to follow the user, the user's posts will show in your feed when you return to it. You are only allowed to message a user if you follow them, and when message is clicked, you are redirected to a moch chat page, which is private between you and the other user.
+
+## monch chat
+
+The monch chat is a private chat between two users. Messages show in real time and are stored and persistent through server restarts. If one user does not have the chat open, they will receive a hot pink flashing "new!" on their feed in the navbar indicating they have a new message. When "new!" is clicked, the user is redirected to the chat they have a new message from.
+
+## reports
 
 Please view the link to reports in the repository for information on the technologies that were included in the creation of our app.
