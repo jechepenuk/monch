@@ -126,7 +126,17 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
             <ul>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
+<<<<<<< HEAD
                 <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+=======
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
+
+
+>>>>>>> d5588eff4f3b6bce729d2fab8bcb144d5faad57b
             </ul>
         </div>
 
@@ -140,10 +150,10 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 
     <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
-    <!-- <div style="width: 50%; margin-left: auto; margin-right: auto;"> -->
     <div class="cont">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
-        <input class="log_in_input" type="text" id="message" name="message" placeholder="say something"/>
+        <input class="cominput" type="text" id="message" name="message" placeholder="say something"/>
+        <input class="post" type="submit" name="message1" value="Send">
         <input type="hidden" name="user" value="admin">
 
     </form>
