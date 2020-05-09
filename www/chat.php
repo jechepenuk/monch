@@ -7,7 +7,7 @@ $result = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_GET['frie
 $row = mysqli_fetch_array($result);
 $friend=$row['username'];
 
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -106,7 +106,6 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
     </script>
 </head>
 <body class="main-container" onload="setInterval(refreshchat,1500)">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -114,7 +113,11 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
             <ul>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_GET['user_id']; ?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
 
 
             </ul>
@@ -126,13 +129,14 @@ $link='friend-profile.php?user_id='.$_GET['user_id'].'&friend='.$_GET['friend'];
 
     </div>
     
-    
+    <div class="innerwrapper">
+
     <h1 class="welcome-page-title">Chatting with <?php echo "<a class='linky' href='$link'>$friend</a><br><br>"; ?></h1>
     <br><br>
-    <!-- <div style="width: 50%; margin-left: auto; margin-right: auto;"> -->
     <div class="cont">
     <form id="msg" action="" method="post" enctype="multipart/form-data" onsubmit="sendFormData();return false;">
-        <input class="log_in_input" type="text" id="message" name="message" placeholder="say something"/>
+        <input class="cominput" type="text" id="message" name="message" placeholder="say something"/>
+        <input class="post" type="submit" name="message1" value="Send">
         <input type="hidden" name="user" value="admin">
 
     </form>

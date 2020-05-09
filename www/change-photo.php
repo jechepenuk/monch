@@ -4,8 +4,10 @@ $message="";
 include_once 'access-db.php';
 if (isset($_POST['submit'])) {
     $userid=$_GET['user_id'];
-    if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
-        echo "<br />Please Select An Image.";
+    
+    if ($_FILES['imagefile']['size']==0){
+        $message="Please choose a file under 2MB.";
+
     } else {
         $target_dir = "public/";
         $temp_name = $_FILES['imagefile']['tmp_name'];
@@ -17,11 +19,12 @@ if (isset($_POST['submit'])) {
         move_uploaded_file($temp_name,$location);
 
         mysqli_query($conn, "UPDATE users SET  user_image='" . $location . "' WHERE user_id='" . $userid . "'");
+        $URL="http://localhost:8000/profile.php?user_id=" .$userid; 
+        echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
+    }
 
     }
-    $URL="http://localhost:8000/profile.php?user_id=" .$userid; 
-    echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
-}
+
 if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
@@ -58,7 +61,6 @@ if (isset($_POST['search'])){
     <title>monch upload</title>
 </head>
 <body class="main-container">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -77,7 +79,14 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
+
     <h1 class="welcome-page-title">Upload a new profile picture</h1>
+
+    <br>
+<br>
+<br><br>
+    <div class="cont">
     <div class="message">
     
     <?php if($message!="") { 
@@ -85,12 +94,9 @@ if (isset($_POST['search'])){
         
         } ?> 
     </div> 
-    <br>
-<br>
-<br><br>
-    <div class="cont">
         <form method="post" action="" enctype="multipart/form-data">
-            <input class="log_in_input" type="file" name="imagefile">
+            <input class="log_in_input" accept="image/*" type="file" name="imagefile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"><br><br>
+            <img class="profilePicture" id="output" src="" alt="no photo chosen">
             <input class="selectButton" type="submit" name="submit" value="Upload">
         </form>
     </div>

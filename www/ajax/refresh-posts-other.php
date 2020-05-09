@@ -10,8 +10,28 @@ $numres=mysqli_fetch_array($num);
 $count=$numres['num'];
 $newcount=mysqli_num_rows($postsresults);
 
+$sumg=mysqli_query($conn,"SELECT SUM(`likes`) AS likesum FROM `posts`");
+$sumrow=mysqli_fetch_array($sumg);
+$sumlikes=$sumrow['likesum'];
+
+$sumc=mysqli_query($conn,"SELECT SUM(`numcomments`) AS comsum FROM `posts`");
+$sumrowc=mysqli_fetch_array($sumc);
+$sumcom=$sumrowc['comsum'];
+
+$totalComments=$sumcom;
+$totalLikes=$sumlikes;
+
+
 //long poll here
-while($newcount==$count){
+while($newcount==$count && $totalComments==$sumcom && $totalLikes==$sumlikes){
+    $sumg=mysqli_query($conn,"SELECT SUM(`likes`) AS likesum FROM `posts`");
+    $sumrow=mysqli_fetch_array($sumg);
+    $sumlikes=$sumrow['likesum'];
+
+    $sumc=mysqli_query($conn,"SELECT SUM(`numcomments`) AS comsum FROM `posts`");
+    $sumrowc=mysqli_fetch_array($sumc);
+    $sumcom=$sumrowc['comsum'];
+    
     $postsresults = mysqli_query($conn,"SELECT * FROM posts WHERE user_id='" . $_GET['friend'] . "' ORDER BY id DESC");
     $newcount=mysqli_num_rows($postsresults);
     sleep(2);

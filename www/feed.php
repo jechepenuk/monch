@@ -7,7 +7,7 @@ $userid=$_SESSION["uid"];
 $me = mysqli_query($conn,"SELECT * FROM users WHERE user_id='" . $_SESSION["uid"] . "'");
 $myinfo=mysqli_fetch_array($me);
 
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -66,7 +66,7 @@ if (isset($_POST['search'])){
                         var paragraph=document.createElement("a");
                         paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode("new message!");
+                        var el=document.createTextNode("new!");
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
 
@@ -103,15 +103,22 @@ if (isset($_POST['search'])){
                         var ele=document.createTextNode(post[1]);
                         caption.appendChild(ele);  
                         var fo=document.createElement("form");
-                        fo.className="center";
+                        // fo.className="center";
                         fo.method="post";
                         fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
-                        comInput.className="log_in_input";
+                        comInput.className="cominput";
                         comInput.name="comment";
                         comInput.type="text";
                         comInput.id="comm";
                         comInput.placeholder="say something...";
+                        //new
+                        var sub=document.createElement("input");
+                        sub.type="submit";
+                        sub.value="post";
+                        sub.name="comment";
+                        sub.className="post";
+                        //new
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
@@ -146,8 +153,15 @@ if (isset($_POST['search'])){
                         likeInput.name="like";
                         likeInput.value=post[5];
                         likeInput.id="like";
+                        //new
+                        var divider=document.createElement("divider");
+                        divider.id="divider";
+                        divider.className="sendinline";
+                        divider.appendChild(fo);
+                        //new
                         fo.appendChild(comInput);
                         fo.appendChild(hidden);
+                        fo.appendChild(sub);
                         f.appendChild(likeInput);
                         f.appendChild(hiddenlike)
                         var d=document.getElementById("cont");
@@ -157,6 +171,7 @@ if (isset($_POST['search'])){
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
+                        d.appendChild(divider);
                         d.appendChild(fo);
                         d.appendChild(f);
                         d.appendChild(br4);
@@ -201,7 +216,7 @@ if (isset($_POST['search'])){
                         var paragraph=document.createElement("a");
                         paragraph.href="./chat.php?user_id=<?php echo $_GET['user_id'];?>&friend=" +n[0] +"&chat_id=" + n[1];
                         paragraph.className="navlink blink_me bold_me";
-                        var el=document.createTextNode("new message!");
+                        var el=document.createTextNode("new!");
                         console.log(msg[0]);
                         paragraph.appendChild(el);
                         div.appendChild(paragraph);
@@ -243,11 +258,16 @@ if (isset($_POST['search'])){
                         fo.method="post";
                         fo.enctype="multipart/form-data";
                         var comInput=document.createElement("input");
-                        comInput.className="log_in_input";
+                        comInput.className="cominput";
                         comInput.name="comment";
                         comInput.type="text";
                         comInput.id="comm";
                         comInput.placeholder="say something...";
+                        var sub=document.createElement("input");
+                        sub.type="submit";
+                        sub.value="post";
+                        sub.name="comment";
+                        sub.className="post";
                         var hidden=document.createElement("input");
                         hidden.type="hidden";
                         hidden.name="postid";
@@ -282,8 +302,13 @@ if (isset($_POST['search'])){
                         likeInput.name="like";
                         likeInput.value=post[5];
                         likeInput.id="like";
+                        var divider=document.createElement("divider");
+                        divider.id="divider";
+                        divider.className="sendinline";
+                        divider.appendChild(fo);
                         fo.appendChild(comInput);
                         fo.appendChild(hidden);
+                        fo.appendChild(sub);
                         f.appendChild(likeInput);
                         f.appendChild(hiddenlike)
                         var d=document.getElementById("cont");
@@ -293,6 +318,7 @@ if (isset($_POST['search'])){
                         d.appendChild(caption);
                         d.appendChild(br);
                         d.appendChild(image);
+                        d.appendChild(divider);
                         d.appendChild(fo);
                         d.appendChild(f);
                         d.appendChild(br4);
@@ -350,7 +376,6 @@ if (isset($_POST['search'])){
 </head>
 
 <body onload=loadposts() class="main-container" >
-    <div class="innerwrapper">
     <div class="header">
         <div class="menu_welcomePage">
             <ul>
@@ -358,8 +383,11 @@ if (isset($_POST['search'])){
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_SESSION["uid"];?>">messages</a> </li>
                 <li><a class="navlink" href="./profile.php?user_id=<?php echo $_SESSION["uid"];?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a></li>
-                <li><form method="post"><input class="searchform" type="text" name="search" placeholder="find a user"></form></li>
-
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
             </ul>
         </div>
 
@@ -367,6 +395,7 @@ if (isset($_POST['search'])){
             <h2 class="logo"> <a href="./feed.php?user_id=<?php echo $_GET['user_id'];?>">monch</a> </h2>
         </div>
     </div>
+    <div class="innerwrapper">
 
     <!-- <hr class="hr-navbar"> -->
     <div class="message">

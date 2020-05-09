@@ -8,8 +8,10 @@ $userid=$_SESSION["uid"];
 if (isset($_POST['submit'])) {
     $caption=$_POST['caption'];
     $caption=htmlspecialchars($caption);
-    if (!getimagesize($_FILES['imagefile']['tmp_name'])){
-        echo "<br>Please choose a file or choose a file under 2MB.";
+    
+    if ($_FILES['imagefile']['size']==0){
+        $message="Please choose a file under 2MB.";
+
     } else {
         $target_dir = "public/";
         $temp_name = $_FILES['imagefile']['tmp_name'];
@@ -29,7 +31,7 @@ if (isset($_POST['submit'])) {
         echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }}
 }
-if (isset($_POST['search'])){
+if (isset($_POST['search2'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
@@ -61,9 +63,13 @@ if (isset($_POST['search'])){
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <title>monch upload</title>
+    <script>
+        function display(file){
+            console.log(file);
+        }
+    </script>
 </head>
 <body class="main-container">
-<div class="innerwrapper">
 
     <div class="header">
 
@@ -72,8 +78,11 @@ if (isset($_POST['search'])){
                 <li><a class="navlink" href="./messages.php?user_id=<?php echo $_GET['user_id'];?>">messages</a> </li>
                 <li><a class="navlink" href="profile.php?user_id=<?php echo $userid;?>">profile</a> </li>
                 <li><a class="navlink" href="./index.php">logout</a> </li>
-                <li><form method="post"><input type="text" name="search" placeholder="find a user"></form></li>
-
+                <li><form method="post">
+                    <input type="text" name="search" placeholder="find a user">
+                    <input class="smallgo" type="submit" name="search2" value="go">
+                </form>
+                </li>
 
             </ul>
         </div>
@@ -83,31 +92,34 @@ if (isset($_POST['search'])){
         </div>
 
     </div>
+    <div class="innerwrapper">
+
     <h1 class="welcome-page-title">What are you eating?</h1>
 
-    <div class="message">
 
-    
-    <?php if($message!="") { 
-        echo $message; 
-        
-        } ?> 
-    </div> 
     <div class="center">
 <br>
 <br>
 <br>
 <br>
 <div class="cont">
+    <div class="message">
+    <?php if($message!="") { 
+        echo $message; 
+        
+        } ?> 
+    </div> 
     <form method="post" action="" enctype="multipart/form-data">
             <input class="log_in_input" type="text" name="caption" placeholder="add a caption..."><br><br>
-            <input class="log_in_input" type="file" name="imagefile"><br><br>
+            <input class="log_in_input" accept="image/*" type="file" name="imagefile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"><br><br>
+            <img class="feedPic" id="output" src="" alt="no photo chosen">
             <input class="selectButton" type="submit" name="submit" value="post">
         </form>
     </div>
 </div>
+<br><br><br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     </div>
 </body>
