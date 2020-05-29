@@ -1,18 +1,17 @@
 <?php
 session_start(); 
-
 $message="";
 
 include_once 'access-db.php';
 $userid=$_SESSION["uid"];
 if ($_GET['user_id']!=$userid){
-    $URL="http://localhost:8000/user-not-found.php?user_id=".$_SESSION['uid']; 
+    $URL="http://".$_SERVER['HTTP_HOST']."/user-not-found.php?user_id=".$_SESSION['uid']; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
 if (isset($_POST['logout'])){
     session_unset();
     session_destroy();
-    $URL="http://localhost:8000/index.php"; 
+    $URL="http://".$_SERVER['HTTP_HOST']."/index.php"; 
     echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 }
 if (isset($_POST['submit'])) {
@@ -32,7 +31,7 @@ if (isset($_POST['submit'])) {
         move_uploaded_file($temp_name,$location);
 
         mysqli_query($conn, "UPDATE users SET  user_image='" . $location . "' WHERE user_id='" . $userid . "'");
-        $URL="http://localhost:8000/profile.php?user_id=" .$userid; 
+        $URL="http://".$_SERVER['HTTP_HOST']."/profile.php?user_id=" .$userid; 
         echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }
 
@@ -42,15 +41,15 @@ if (isset($_POST['search'])){
     $username=$_POST['search'];
     $result2 = mysqli_query($conn,"SELECT * FROM users WHERE username='" . $username . "'");
     if (mysqli_num_rows($result2)<1){
-        $URL="http://localhost:8000/user-not-found.php?user_id=".$_GET['user_id']; 
+        $URL="http://".$_SERVER['HTTP_HOST']."/user-not-found.php?user_id=".$_GET['user_id']; 
         echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
     }else{
         $user=mysqli_fetch_array($result2);
         if ($user['user_id']==$_GET['user_id']){
-            $URL="http://localhost:8000/profile.php?user_id=".$_GET['user_id']; 
+            $URL="http://".$_SERVER['HTTP_HOST']."/profile.php?user_id=".$_GET['user_id']; 
             echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
         }else{
-            $URL="http://localhost:8000/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
+            $URL="http://".$_SERVER['HTTP_HOST']."/friend-profile.php?user_id=".$_GET['user_id'].'&friend='.$user['user_id']; 
             echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
         }
     }

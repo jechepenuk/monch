@@ -36,7 +36,7 @@ session_start();
            $row=mysqli_fetch_array($result1);
            $userid=$row['user_id'];
            $_SESSION["uid"] = $userid;
-           $URL="http://localhost:8000/feed.php?user_id=" .$_SESSION['uid']; 
+           $URL="http://".$_SERVER['HTTP_HOST']."/feed.php?user_id=" .$_SESSION['uid']; 
            echo "<script type='text/javascript'>document. location. href='{$URL}';</script>"; echo '<META HTTP-EQUIV="refresh" content="0;URL=';
 
        }
