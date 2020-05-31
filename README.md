@@ -28,4 +28,4 @@ The monch chat is a private chat between two users. Messages show in real time a
 
 ## reports
 
-Please view the "Reports" folder in the repository for information on the technologies that were included in the creation of our app.
+Please view the "Reports" folder in the repository for information on the technologies that were included in the creation of the site.
