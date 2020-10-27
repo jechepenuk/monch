@@ -26,6 +26,6 @@ If a user searches for another existing user or clicks a user's name with a link
 
 The monch chat is a private chat between two users. Messages show in real time and are stored and persistent through server restarts. If one user does not have the chat open, they will receive a hot pink flashing "new!" on their feed in the navbar indicating they have a new message. When "new!" is clicked, the user is redirected to the chat they have a new message from.
 
-## reports
+## how to run
 
-Please view the "Reports" folder in the repository for information on the technologies that were included in the creation of the site.
+Download the file folder, run docker-compose up inside the main directory, navigate to localhost:8000. That's it!
